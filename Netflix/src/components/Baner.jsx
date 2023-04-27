@@ -13,7 +13,7 @@ function Baner() {
 			setMovies(response.data.results);
 		});
 	}, []);
-	// console.log(randomMovie);
+
 	const truncate = (str, n) => {
 		if (str?.length > n) {
 			return str.slice(0, n) + '...';
@@ -44,9 +44,9 @@ function Baner() {
 					</div>
 
 					<p className='max-w-[60%] md:max-w-[60%] lg:max-w-[45%] xl:max-w-[30%]'>
-						{truncate(randomMovie?.overview, 200)}
+						{truncate(randomMovie?.overview, 150)}
 					</p>
-					<p className='text-gray-500 text-sm w-full md:max-w-[60%] lg:max-w-[45%] xl:max-w-[30%]'>
+					<p className='text-gray-500 pt-2 text-sm w-full md:max-w-[60%] lg:max-w-[45%] xl:max-w-[30%]'>
 						Released: {randomMovie?.release_date}
 					</p>
 				</div>

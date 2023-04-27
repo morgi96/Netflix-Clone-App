@@ -9,9 +9,9 @@ function Home() {
 		<>
 			<Navbar />
 			<Baner />
-			<Row rowID='1' title='Upcoming' fetchURL={requests.upcoming} />
-			<Row rowID='2' title='Popular' fetchURL={requests.popular} />
-			<Row rowID='3' title='Top rated' fetchURL={requests.topRated} />
+			<Row rowID='1' title='Upcoming' dataURL={requests.upcoming} />
+			<Row rowID='2' title='Popular' dataURL={requests.popular} />
+			<Row rowID='3' title='Top rated' dataURL={requests.topRated} />
 		</>
 	);
 }

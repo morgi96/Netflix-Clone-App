@@ -4,14 +4,14 @@ import { BiRightArrow, BiLeftArrow } from 'react-icons/bi';
 import { useEffect, useState } from 'react';
 import Movie from './Movie';
 
-function Row({ title, fetchURL, rowID }) {
+function Row({ title, dataURL, rowID }) {
 	const [movies, setMovies] = useState([]);
 
 	useEffect(() => {
-		axios.get(fetchURL).then((response) => {
+		axios.get(dataURL).then((response) => {
 			setMovies(response.data.results);
 		});
-	}, [fetchURL]);
+	}, [dataURL]);
 
 	const prevBtn = () => {
 		let slider = document.getElementById('slider' + rowID);
@@ -29,7 +29,7 @@ function Row({ title, fetchURL, rowID }) {
 				<BiLeftArrow
 					onClick={prevBtn}
 					size={35}
-					className='bg-white left-0 rounded-lg absolute opacity-50 hover:opacity-100 cursor-pointer z-10 hidden group-hover:block'
+					className='bg-white left-0 rounded-lg absolute opacity-50 hover:opacity-100 cursor-pointer z-10 hidden group-hover:block ml-2'
 				/>
 				<div
 					id={'slider' + rowID}
@@ -42,7 +42,7 @@ function Row({ title, fetchURL, rowID }) {
 				<BiRightArrow
 					onClick={nextBtn}
 					size={35}
-					className='bg-white right-0 rounded-lg absolute opacity-50 hover:opacity-100 cursor-pointer z-10 hidden  group-hover:block'
+					className='bg-white right-0 rounded-lg absolute opacity-50 hover:opacity-100 cursor-pointer z-10 hidden  group-hover:block mr-2'
 				/>
 			</div>
 		</>
