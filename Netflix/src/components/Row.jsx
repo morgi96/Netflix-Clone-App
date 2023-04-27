@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { BiRightArrow, BiLeftArrow } from 'react-icons/bi';
 import { useEffect, useState } from 'react';
+import { BiRightArrow, BiLeftArrow } from 'react-icons/bi';
 import Movie from './Movie';
 
 function Row({ title, dataURL, rowID }) {
@@ -23,7 +23,7 @@ function Row({ title, dataURL, rowID }) {
 
 	return (
 		<>
-			<h2 className='text-white font-bold md:text-xl font-[Montserrat] p-5 '>
+			<h2 className='text-white font-bold md:text-xl lg:text-2xl p-5 '>
 				{title}
 			</h2>
 			<div className='relative flex items-center group'>
