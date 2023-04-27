@@ -1,7 +1,7 @@
 function MovieVertical({ movie }) {
 	return (
 		<div className='relative w-[180px] sm:w-[220px] md:w-[260px] lg:w-[300px] inline-block cursor-pointer p-2'>
-			<div className='bg-red-700 px-2 py-2 absolute top-0 right-0 text-white rounded-bl-lg text-sm'>
+			<div className='bg-red-700 px-2 py-2 absolute top-0 right-0 text-white rounded-bl-lg text-sm font-bold'>
 				{movie?.release_date}
 			</div>
 			<img

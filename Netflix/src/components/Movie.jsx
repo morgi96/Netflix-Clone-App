@@ -3,8 +3,26 @@ import { useState } from 'react';
 
 function Movie({ movie }) {
 	// const [like, setLike] = useState(false);
+	const setVoteColor = (vote) => {
+		if (vote >= 8) {
+			return 'text-green-900';
+		}
+		if (vote >= 5) {
+			return 'text-orange-600';
+		} else {
+			return 'text-red-900';
+		}
+	};
+
 	return (
 		<div className='relative w-[180px] sm:w-[220px] md:w-[260px] lg:w-[300px] inline-block cursor-pointer p-2'>
+			<div
+				className={`bg-black/80 px-2 py-2 absolute top-4 right-4 ${setVoteColor(
+					movie?.vote_average
+				)} rounded-full text-md font-bold`}
+			>
+				{movie?.vote_average}
+			</div>
 			<img
 				className='w-full h-auto block'
 				src={`https://image.tmdb.org/t/p/w500/${movie?.backdrop_path}`}

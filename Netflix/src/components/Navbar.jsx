@@ -1,5 +1,6 @@
 import { BsSearch } from 'react-icons/bs';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import userAvatar from '../assets/userAvatar.png';
 import './Navbar.css';
 
@@ -34,11 +35,19 @@ function Navbar() {
 				
 			</div> */}
 				<div className='w-full ml-12'>
-					<ul className='flex space-x-4 text-gray-400 text-base'>
-						<li className='nav__link'>Home</li>
-						<li className='nav__link'>Top rated</li>
-						<li className='nav__link'>Popular</li>
-						<li className='nav__link'>Favourite</li>
+					<ul className='flex gap-x-6 text-gray-400 text-base'>
+						<Link>
+							<li className='nav__link'>Home</li>
+						</Link>
+						<Link>
+							<li className='nav__link'>Top rated</li>
+						</Link>
+						<Link>
+							<li className='nav__link'>Popular</li>
+						</Link>
+						<Link>
+							<li className='nav__link'>Favourite</li>
+						</Link>
 					</ul>
 				</div>
 			</div>
