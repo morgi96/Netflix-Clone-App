@@ -43,7 +43,7 @@ function Baner() {
 						</button>
 					</div>
 
-					<p className='max-w-[60%] md:max-w-[60%] lg:max-w-[45%] xl:max-w-[30%]'>
+					<p className='max-w-[60%] md:max-w-[50%] lg:max-w-[40%] xl:max-w-[30%]'>
 						{truncate(randomMovie?.overview, 150)}
 					</p>
 					<p className='text-gray-500 pt-2 text-sm w-full md:max-w-[60%] lg:max-w-[45%] xl:max-w-[30%]'>

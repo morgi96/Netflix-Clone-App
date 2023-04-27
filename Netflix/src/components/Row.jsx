@@ -1,5 +1,4 @@
 import axios from 'axios';
-import React from 'react';
 import { BiRightArrow, BiLeftArrow } from 'react-icons/bi';
 import { useEffect, useState } from 'react';
 import Movie from './Movie';
@@ -24,12 +23,14 @@ function Row({ title, dataURL, rowID }) {
 
 	return (
 		<>
-			<h2 className='text-white font-bold md:text-xl p-5 '>{title}</h2>
+			<h2 className='text-white font-bold md:text-xl font-[Montserrat] p-5 '>
+				{title}
+			</h2>
 			<div className='relative flex items-center group'>
 				<BiLeftArrow
 					onClick={prevBtn}
 					size={35}
-					className='bg-white left-0 rounded-lg absolute opacity-50 hover:opacity-100 cursor-pointer z-10 hidden group-hover:block ml-2'
+					className='bg-white left-0 rounded-lg absolute opacity-50 hover:opacity-100 cursor-pointer z-[20] hidden group-hover:block ml-2'
 				/>
 				<div
 					id={'slider' + rowID}
@@ -42,7 +43,7 @@ function Row({ title, dataURL, rowID }) {
 				<BiRightArrow
 					onClick={nextBtn}
 					size={35}
-					className='bg-white right-0 rounded-lg absolute opacity-50 hover:opacity-100 cursor-pointer z-10 hidden  group-hover:block mr-2'
+					className='bg-white right-0 rounded-lg absolute opacity-50 hover:opacity-100 cursor-pointer z-[20] hidden  group-hover:block mr-2'
 				/>
 			</div>
 		</>

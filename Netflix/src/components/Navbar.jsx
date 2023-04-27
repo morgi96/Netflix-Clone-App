@@ -1,22 +1,47 @@
 import { BsSearch } from 'react-icons/bs';
+import { useState, useEffect } from 'react';
 import userAvatar from '../assets/userAvatar.png';
 import './Navbar.css';
 
 function Navbar() {
-	return (
-		<div className='w-full bg-black/80 flex items-center justify-between px-8 z-[50] absolute'>
-			<h1 className='text-red-600 font-bold text-[3rem] cursor-pointer'>
-				NETFLIX
-			</h1>
-			<div className='max-w-[400px]'>
-				<ul className='flex space-x-4 text-gray-400 text-base'>
-					<li className='nav__link'>Home</li>
-					<li className='nav__link'>Top rated</li>
-					<li className='nav__link'>Popular</li>
-					<li className='nav__link'>Favourite</li>
-				</ul>
-			</div>
+	const [isScrolled, setIsScrolled] = useState(false);
+	useEffect(() => {
+		const handleScroll = () => {
+			if (window.scrollY > 100) {
+				setIsScrolled(true);
+			} else {
+				setIsScrolled(false);
+			}
+		};
+		window.addEventListener('scroll', handleScroll);
 
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	}, []);
+
+	return (
+		<div
+			className={`w-full flex items-center justify-between px-8 z-[50] fixed transition duration-[300ms] ease-out ${
+				isScrolled && 'bg-black'
+			}`}
+		>
+			<div className='flex items-center'>
+				<h1 className='text-red-600 font-bold text-[3rem] cursor-pointer'>
+					NETFLIX
+				</h1>
+				{/* <div className='max-w-[400px]'>
+				
+			</div> */}
+				<div className='w-full ml-12'>
+					<ul className='flex space-x-4 text-gray-400 text-base'>
+						<li className='nav__link'>Home</li>
+						<li className='nav__link'>Top rated</li>
+						<li className='nav__link'>Popular</li>
+						<li className='nav__link'>Favourite</li>
+					</ul>
+				</div>
+			</div>
 			<div className=''>
 				<div className='flex items-center space-x-4'>
 					<button className='hover:'>
