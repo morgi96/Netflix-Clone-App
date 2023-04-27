@@ -23,9 +23,13 @@ function Row({ title, dataURL, rowID }) {
 
 	return (
 		<>
-			<h2 className='text-white font-bold md:text-xl lg:text-2xl p-5 '>
-				{title}
-			</h2>
+			<div className='px-2'>
+				<span className='before:block before:absolute before:-inset-[1px] before:-skew-y-3 before:bg-red-600 relative inline-block'>
+					<span className='text-white font-bold md:text-xl lg:text-2xl px-5 relative '>
+						{title}
+					</span>
+				</span>
+			</div>
 			<div className='relative flex items-center group'>
 				<BiLeftArrow
 					onClick={prevBtn}
