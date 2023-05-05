@@ -2,7 +2,6 @@ import { FaRegHeart, FaHeart } from 'react-icons/fa';
 import { useState } from 'react';
 
 function Movie({ movie }) {
-	// const [like, setLike] = useState(false);
 	const setVoteColor = (vote) => {
 		if (vote >= 8) {
 			return 'text-green-900';
@@ -15,7 +14,7 @@ function Movie({ movie }) {
 	};
 
 	return (
-		<div className='relative w-[180px] sm:w-[220px] md:w-[260px] lg:w-[300px] inline-block cursor-pointer p-2'>
+		<div className='relative w-[180px] sm:w-[220px] md:w-[260px] lg:w-[300px] inline-block cursor-pointer p-2 hover:scale-105 duration-[300ms] ease-out'>
 			<div
 				className={`bg-black/80 px-2 py-2 absolute top-4 right-4 ${setVoteColor(
 					movie?.vote_average

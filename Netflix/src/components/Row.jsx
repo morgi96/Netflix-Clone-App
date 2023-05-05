@@ -23,7 +23,7 @@ function Row({ title, dataURL, rowID }) {
 
 	return (
 		<>
-			<div className='px-2'>
+			<div className='px-2 py-4'>
 				<span className='before:block before:absolute before:-inset-[1px] before:-skew-y-3 before:bg-red-600 relative inline-block'>
 					<span className='text-white font-bold md:text-xl lg:text-2xl px-5 relative '>
 						{title}

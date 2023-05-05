@@ -1,11 +1,13 @@
 import { BsSearch } from 'react-icons/bs';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import SearchBar from './SearchBar';
 import userAvatar from '../assets/userAvatar.png';
 import './Navbar.css';
 
 function Navbar() {
 	const [isScrolled, setIsScrolled] = useState(false);
+
 	useEffect(() => {
 		const handleScroll = () => {
 			if (window.scrollY > 100) {
@@ -28,32 +30,38 @@ function Navbar() {
 			}`}
 		>
 			<div className='flex items-center'>
-				<h1 className='text-red-600 font-bold text-[3rem] cursor-pointer'>
-					NETFLIX
-				</h1>
+				<Link to='/home'>
+					<h1 className='text-red-600 font-bold text-[3rem] cursor-pointer'>
+						NETFLIX
+					</h1>
+				</Link>
 				{/* <div className='max-w-[400px]'>
 				
 			</div> */}
-				<div className='w-full ml-12'>
-					<ul className='flex gap-x-6 text-gray-400 text-base'>
-						<Link>
-							<li className='nav__link'>Home</li>
-						</Link>
-						<Link>
-							<li className='nav__link'>Top rated</li>
-						</Link>
-						<Link>
-							<li className='nav__link'>Popular</li>
-						</Link>
-						<Link>
-							<li className='nav__link'>Favourite</li>
-						</Link>
+				{/* <div className='w-full ml-12'>
+					<ul className='w-full flex text-gray-400 text-base gap-16'>
+						<li className='nav__link'>
+							<Link>Home</Link>
+						</li>
+
+						<li className='nav__link'>
+							<Link>Home</Link>
+						</li>
+
+						<li className='nav__link'>
+							<Link>Home</Link>
+						</li>
+
+						<li className='nav__link'>
+							<Link>Home</Link>
+						</li>
 					</ul>
-				</div>
+				</div> */}
 			</div>
 			<div className=''>
 				<div className='flex items-center space-x-4'>
-					<button className='hover:'>
+					<SearchBar />
+					<button className=''>
 						<BsSearch size={25} className='text-white' />
 					</button>
 					<div className='cursor-pointer'>

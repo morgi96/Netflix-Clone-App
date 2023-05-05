@@ -11,7 +11,6 @@ function RowVertical({ dataURL, title, rowID }) {
 			setMoviesVertical(response.data.results);
 		});
 	}, [dataURL]);
-	console.log(moviesVertical);
 
 	const prevBtn = () => {
 		let slider = document.getElementById('slider' + rowID);
@@ -24,7 +23,7 @@ function RowVertical({ dataURL, title, rowID }) {
 
 	return (
 		<>
-			<h2 className='text-white font-bold md:text-xl lg:text-2xl p-5 '>
+			<h2 className='text-white font-bold md:text-xl lg:text-2xl p-5'>
 				{title}
 			</h2>
 			<div className='relative flex items-center group'>
