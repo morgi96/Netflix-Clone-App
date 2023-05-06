@@ -16,9 +16,9 @@ function Movie({ movie }) {
 	return (
 		<div className='relative w-[180px] sm:w-[220px] md:w-[260px] lg:w-[300px] inline-block cursor-pointer p-2 hover:scale-105 duration-[300ms] ease-out'>
 			<div
-				className={`bg-black/80 px-2 py-2 absolute top-4 right-4 ${setVoteColor(
+				className={`bg-black/80 px-2 py-2 absolute top-4 right-4  ${setVoteColor(
 					movie?.vote_average
-				)} rounded-full text-md font-bold`}
+				)} rounded text-md font-bold`}
 			>
 				{movie?.vote_average}
 			</div>

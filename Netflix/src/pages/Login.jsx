@@ -1,12 +1,28 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { UserAuth } from '../context/AuthContext';
 
 function Login() {
-	const handleSubmit = (e) => {
-		e.prevent.default();
+	const { user, logIn } = UserAuth();
+	const [email, setEmail] = useState('');
+	const [error, setError] = useState('');
+	const [password, setPassword] = useState('');
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		setError('');
+		try {
+			await logIn(email, password);
+			navigate('/home');
+		} catch (error) {
+			console.log(error);
+			setError('Password or e-mail are wrong.');
+		}
 	};
 
+	const navigate = useNavigate();
+
 	return (
-		// <div className='h-full'>
 		<div className='min-h-full relative'>
 			<div className='w-full h-[90px] absolute top-0 z-10'>
 				<h1 className='font-bold text-[3rem] text-red-600 ml-[3%]'>NETFLIX</h1>
@@ -21,46 +37,61 @@ function Login() {
 			</div>
 			<div className='before:content[] before:h-[91px] before:block after:content[] after:h-[236px] after:block max-w-[500px] md:max-w-[550px] xl:max-w-[650px] min-h-screen bg-transparent rounded mx-auto -mb[236px] px-[5%]'>
 				<div>
-					<div className='bg-black/70 flex flex-col rounded-md text-white text-xl px-16 py-14 z-[90] w-full'>
+					<div className='bg-black/60 flex flex-col rounded-md text-white text-xl px-16 py-14 z-[90] w-full'>
 						<div className=''>
 							<h1 className='text-white text-3xl font-semibold mb-6'>
-								Zaloguj się
+								Sign In
 							</h1>
-							<form onSubmit={handleSubmit} className='w-full'>
-								<div className='max-w-full pb-4'>
+							<form onSubmit={handleSubmit} className='w-full space-y-4'>
+								<div>
 									<input
+										onChange={(e) => setEmail(e.target.value)}
 										type='email'
 										placeholder='E-mail or phone number'
-										className='h-12 rounded w-full relative text-[16px] bg-zinc-800 p-4'
+										autoComplete='email'
+										required
+										className='h-12 rounded w-full relative text-[16px] bg-zinc-800 p-4 inline-block'
 									/>
 								</div>
 								<div>
 									<input
+										onChange={(e) => setPassword(e.target.value)}
 										type='password'
 										placeholder='Password'
-										className='h-12 rounded w-full relative text-[16px] bg-zinc-800 p-4'
+										autoComplete='password'
+										required
+										className='h-12 rounded w-full relative text-[16px] bg-zinc-800 p-4 inline-block'
 									/>
 								</div>
-							</form>
-							<div className='w-full text-center mt-10'>
-								<Link to='/home'>
+								<div className='w-full text-center mt-4'>
+									{error ? (
+										<p className='text-sm bg-red-400 py-2 rounded mb-4'>
+											{error}
+										</p>
+									) : null}
 									<button className='w-full text-center text-white text-base bg-red-700 px-4 py-3 rounded'>
-										Zaloguj się
+										Sign In
 									</button>
-								</Link>
-								<div className='flex justify-center items-center text-sm mt-2'>
-									Need account?{' '}
-									<Link to='/signup'>
-										<button className='text-gray-400 ml-2'>Sign Up!</button>
-									</Link>
+
+									<div className='flex justify-between items-center text-sm mt-2'>
+										<div className='text-gray-300'>
+											<input className='mr-2' type='checkbox' />
+											Remember me
+										</div>
+										<div>
+											Need account?{' '}
+											<Link to='/signup'>
+												<button className='text-gray-400 ml-1'>Sign Up!</button>
+											</Link>
+										</div>
+									</div>
 								</div>
-							</div>
+							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		// </div>
 	);
 }
 

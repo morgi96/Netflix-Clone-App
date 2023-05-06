@@ -28,7 +28,7 @@ function Baner() {
 				<img
 					src={`https://image.tmdb.org/t/p/original/${randomMovie?.backdrop_path}`}
 					alt={randomMovie?.title}
-					className='object-cover w-full h-full'
+					className='object-cover w-full h-[550px]'
 				/>
 				<div className='absolute w-full top-[25%] p-4 md:p-8'>
 					<h1 className='mb-4 font-bold text-2xl md:text-4xl'>

@@ -1,13 +1,26 @@
 import { BsSearch } from 'react-icons/bs';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { HiChevronDown } from 'react-icons/hi';
+import { Link, useNavigate } from 'react-router-dom';
+import { UserAuth } from '../context/AuthContext';
 import SearchBar from './SearchBar';
 import userAvatar from '../assets/userAvatar.png';
 import './Navbar.css';
 
 function Navbar() {
 	const [isScrolled, setIsScrolled] = useState(false);
+	const { user, logOut } = UserAuth();
+	const navigate = useNavigate();
 
+	const handleLogOut = async () => {
+		try {
+			await logOut();
+			navigate('/');
+		} catch (error) {
+			console.log(error);
+		}
+	};
+	console.log(user);
 	useEffect(() => {
 		const handleScroll = () => {
 			if (window.scrollY > 100) {
@@ -62,11 +75,22 @@ function Navbar() {
 				<div className='flex items-center space-x-4'>
 					<SearchBar />
 					<button className=''>
-						<BsSearch size={25} className='text-white' />
+						<BsSearch size={20} className='text-white' />
 					</button>
-					<div className='cursor-pointer'>
-						<img src={userAvatar} alt='User Avatar' className='w-[35px]' />
-					</div>
+					{user?.email && (
+						<div className='cursor-pointer flex items-center space-x-2'>
+							<Link to='/account'>
+								<img src={userAvatar} alt='User Avatar' className='w-[26px]' />
+							</Link>
+							{/* <HiChevronDown className='text-white' size={25} /> */}
+							<button
+								className='text-white text-sm font-bold'
+								onClick={handleLogOut}
+							>
+								Logout
+							</button>
+						</div>
+					)}
 				</div>
 			</div>
 		</div>
