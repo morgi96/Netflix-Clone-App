@@ -5,7 +5,11 @@ const requests = {
 	topRated: `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`,
 	upcoming: `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`,
 	latest: `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}&language=en-US`,
-	// videos: `https://api.themoviedb.org/3/movie/297762?api_key=${API_KEY}&append_to_response=videos`,
+	videos: `https://api.themoviedb.org/3/movie/297762?api_key=${API_KEY}&append_to_response=videos`,
+};
+
+export const getVideoUrl = (id) => {
+	return `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=videos`;
 };
 
 export default requests;

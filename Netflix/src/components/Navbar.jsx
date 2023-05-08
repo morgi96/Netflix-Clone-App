@@ -1,6 +1,5 @@
 import { BsSearch } from 'react-icons/bs';
 import { useState, useEffect } from 'react';
-import { HiChevronDown } from 'react-icons/hi';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
 import SearchBar from './SearchBar';
@@ -27,20 +26,20 @@ function Navbar() {
 		setShowDialogProfile(!showDialogProfile);
 	};
 
-	useEffect(() => {
-		const handleScroll = () => {
-			if (window.scrollY > 100) {
-				setIsScrolled(true);
-			} else {
-				setIsScrolled(false);
-			}
-		};
-		window.addEventListener('scroll', handleScroll);
+	// useEffect(() => {
+	// 	const handleScroll = () => {
+	// 		if (window.scrollY > 100) {
+	// 			setIsScrolled(true);
+	// 		} else {
+	// 			setIsScrolled(false);
+	// 		}
+	// 	};
+	// 	window.addEventListener('scroll', handleScroll);
 
-		return () => {
-			window.removeEventListener('scroll', handleScroll);
-		};
-	}, []);
+	// 	return () => {
+	// 		window.removeEventListener('scroll', handleScroll);
+	// 	};
+	// }, []);
 
 	return (
 		<>
@@ -82,7 +81,7 @@ function Navbar() {
 				{/* Box with search button / user avatar & logout  */}
 				<div className='relative max-w-full'>
 					<div className='flex items-center space-x-4'>
-						{/* <SearchBar /> */}
+						<SearchBar />
 						<button className=''>
 							<BsSearch size={20} className='text-white' />
 						</button>
