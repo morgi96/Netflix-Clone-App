@@ -79,10 +79,20 @@ function Navbar() {
 						{/* FIXME  */}
 					</div>
 					{showDialogProfile && (
-						<div className='bg-black/70 text-white rounded absolute top-10 mr-10 p-[10px] flex items-center h-8 hover:bg-white hover:text-black ease-out duration-[200ms]'>
-							<button className='text-sm font-bold' onClick={handleLogOut}>
-								Logout
-							</button>
+						<div className='bg-black/70 text-white rounded-md absolute top-8 right-0 flex flex-col items-center w-20 py-1'>
+							<div className='hover:text-black ease-out duration-[200ms] w-full-h-full '>
+								<button className='w-full h-full text-sm font-bold  hover:bg-white rounded p-[2px]'>
+									<Link to='/account'>Account</Link>
+								</button>
+							</div>
+							<div className='hover:text-black ease-out duration-[200ms] w-full-h-full'>
+								<button
+									className='text-sm font-bold  hover:bg-white rounded p-[2px]'
+									onClick={handleLogOut}
+								>
+									Logout
+								</button>
+							</div>
 						</div>
 					)}
 				</div>
