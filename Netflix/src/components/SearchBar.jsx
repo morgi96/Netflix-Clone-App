@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 function SearchBar({ onSubmit }) {
 	const [term, setTerm] = useState('');
+
 	const handleFormSubmit = (e) => {
 		e.preventDefault();
 		onSubmit(term);

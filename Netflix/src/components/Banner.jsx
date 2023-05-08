@@ -3,14 +3,15 @@ import axios from 'axios';
 import requests from '../Requests';
 import { useEffect, useState } from 'react';
 
-function Baner() {
+function Banner({ handleOpen }) {
 	const [movies, setMovies] = useState([]);
-
 	const randomMovie = movies[Math.floor(Math.random() * movies.length)];
 
+	console.log(randomMovie);
 	useEffect(() => {
 		axios.get(requests.popular).then((response) => {
 			setMovies(response.data.results);
+			console.log(response.data.results);
 		});
 	}, []);
 
@@ -28,7 +29,7 @@ function Baner() {
 				<img
 					src={`https://image.tmdb.org/t/p/original/${randomMovie?.backdrop_path}`}
 					alt={randomMovie?.title}
-					className='object-cover w-full h-[550px]'
+					className='object-cover object-center w-full h-[550px]'
 				/>
 				<div className='absolute w-full top-[25%] p-4 md:p-8'>
 					<h1 className='mb-4 font-bold text-2xl md:text-4xl'>
@@ -38,7 +39,10 @@ function Baner() {
 						<button className='rounded bg-white text-black font-bold py-[4px] px-4'>
 							Play
 						</button>
-						<button className='rounded bg-gray-600 py-[4px] px-4 ml-4'>
+						<button
+							onClick={handleOpen}
+							className='rounded bg-gray-600 py-[4px] px-4 ml-4'
+						>
 							More informations
 						</button>
 					</div>
@@ -55,4 +59,4 @@ function Baner() {
 	);
 }
 
-export default Baner;
+export default Banner;
