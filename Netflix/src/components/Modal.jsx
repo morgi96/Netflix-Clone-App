@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import requests, { getVideoUrl } from '../Requests';
+import { getVideoUrl, getCastUrl } from '../Requests';
 import ReactPlayer from 'react-player/youtube';
 import { FaPlay } from 'react-icons/fa';
 import { BiPlus } from 'react-icons/bi';
@@ -12,6 +12,7 @@ function Modal({ handleClose, id }) {
 	const [genres, setGenres] = useState(null);
 	const [movie, setMovie] = useState(null);
 	const [playTrailer, setPlayTrailer] = useState(false);
+	const [cast, setCast] = useState(null);
 
 	const getTrailer = (videos) => {
 		const trailer = videos.find((video) => video.type === 'Trailer');
@@ -28,6 +29,17 @@ function Modal({ handleClose, id }) {
 			});
 		}
 	}, [id]);
+
+	useEffect(() => {
+		if (id) {
+			const url = getCastUrl(id);
+			axios.get(url).then((response) => {
+				setCast(response.data.cast);
+			});
+		}
+	}, [id]);
+
+	console.log(cast);
 
 	const handlePlay = () => {
 		setPlayTrailer(!playTrailer);
@@ -59,15 +71,21 @@ function Modal({ handleClose, id }) {
 						url={`https://www.youtube.com/watch?v=${trailer?.key}`}
 					/>
 				</div>
-				<div className='bg-zinc-900 z-50 p-4 flex justify-between'>
-					<div className='flex items-center justify-between w-full'>
-						<div className='flex items-center'>
+				<div className='bg-zinc-900 z-50 p-4'>
+					<div className='flex items-center justify-between'>
+						<div className=''>
 							<h2 className='text-white font-bold text-lg md:text-2xl'>
 								{movie?.original_title}
 							</h2>
-							<p className='text-white flex justify-center items-center  h-5 w-10 text-xs border-[1px] ml-2 rounded-md'>
-								HD
-							</p>
+							<div className='flex space-x-2 pb-2'>
+								<p className='font-semibold text-sm text-green-500'>
+									{movie?.vote_average * 10}% Match
+								</p>
+								<p className='text-gray-600 text-sm '>{movie?.release_date}</p>
+								<p className='text-white flex justify-center items-center  h-5 w-10 text-xs border-[1px] font-bold ml-3 rounded-md'>
+									HD
+								</p>
+							</div>
 						</div>
 						<div className='flex items-center space-x-2'>
 							<button onClick={handlePlay} className='modalBtn'>
@@ -78,11 +96,33 @@ function Modal({ handleClose, id }) {
 								)}
 							</button>
 							<button className='modalBtn'>
-								<BiPlus size={30} className='btnModal text-white' />
+								<BiPlus
+									size={30}
+									className='btnModal text-white rounded-full'
+								/>
 							</button>
 							<button className='modalBtn'>
-								<BsHandThumbsUp size={30} className='btnModal text-white' />
+								<BsHandThumbsUp
+									size={30}
+									className='btnModal text-white rounded-full'
+								/>
 							</button>
+						</div>
+					</div>
+					<div className='flex flex-col justify-start items-center max-w-[75%] md:max-w-[50%]'>
+						<p className='text-white text-semibold'>{movie?.overview}</p>
+					</div>
+					<div className='mt-4 space-y-1'>
+						<div className='text-white font-semibold text-sm'>
+							<span className='text-gray-700 mr-2'>Genres:</span>
+							{genres?.map((genre) => genre?.name).join(', ')}
+						</div>
+						<div className='text-white font-semibold text-sm'>
+							<span className='text-gray-700 mr-2'>Starring:</span>
+							{cast
+								?.map((cast) => cast?.name)
+								.slice(0, 2)
+								.join(', ')}
 						</div>
 					</div>
 				</div>

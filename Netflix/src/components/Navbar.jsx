@@ -54,34 +54,12 @@ function Navbar() {
 							NETFLIX
 						</h1>
 					</Link>
-					{/* <div className='max-w-[400px]'>
-				
-			</div> */}
-					{/* <div className='w-full ml-12'>
-					<ul className='w-full flex text-gray-400 text-base gap-16'>
-						<li className='nav__link'>
-							<Link>Home</Link>
-						</li>
-
-						<li className='nav__link'>
-							<Link>Home</Link>
-						</li>
-
-						<li className='nav__link'>
-							<Link>Home</Link>
-						</li>
-
-						<li className='nav__link'>
-							<Link>Home</Link>
-						</li>
-					</ul>
-				</div> */}
 				</div>
 
 				{/* Box with search button / user avatar & logout  */}
 				<div className='relative max-w-full'>
 					<div className='flex items-center space-x-4'>
-						<SearchBar />
+						{/* <SearchBar /> */}
 						<button className=''>
 							<BsSearch size={20} className='text-white' />
 						</button>

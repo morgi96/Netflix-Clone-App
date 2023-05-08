@@ -3,6 +3,8 @@ import axios from 'axios';
 import requests from '../Requests';
 import { useEffect, useState } from 'react';
 import Modal from './Modal';
+import { FaPlay, FaInfo, FaInfoCircle } from 'react-icons/fa';
+import { AiOutlineInfoCircle } from 'react-icons/ai';
 
 function Banner() {
 	const [showModal, setShowModal] = useState(false);
@@ -44,16 +46,22 @@ function Banner() {
 						<h1 className='mb-4 font-bold text-2xl md:text-4xl'>
 							{randomMovie?.title}
 						</h1>
-						<div className='my-5'>
-							<button className='rounded bg-white text-black font-bold py-[4px] px-4'>
-								Play
-							</button>
-							<button
-								onClick={handleOpen}
-								className='rounded bg-gray-600 py-[4px] px-4 ml-4'
-							>
-								More informations
-							</button>
+						<div className='my-5 flex space-x-4'>
+							<div>
+								<button className='flex items-center rounded bg-white text-black font-bold text-lg py-[4px] px-4'>
+									<FaPlay size={16} className='mr-2' />
+									Play
+								</button>
+							</div>
+							<div>
+								<button
+									onClick={handleOpen}
+									className='flex items-center rounded bg-gray-500/60 py-[4px] px-4 text-lg'
+								>
+									<AiOutlineInfoCircle size={20} className='mr-2' />
+									More informations
+								</button>
+							</div>
 						</div>
 
 						<p className='max-w-[60%] md:max-w-[50%] lg:max-w-[40%] xl:max-w-[30%]'>

@@ -9,6 +9,6 @@ body {
 
 @layer components {
 	.btnModal {
-		@apply border-[1px] p-[5px]  rounded-lg w-10 h-10 flex items-center justify-center hover:bg-white hover:text-black transition ease-in-out duration-[250ms];
+		@apply border-[1px] p-[5px] h-7 w-7 md:h-9 md:w-9 rounded-lg flex items-center justify-center hover:bg-white hover:text-black transition ease-in-out duration-[250ms];
 	}
 }

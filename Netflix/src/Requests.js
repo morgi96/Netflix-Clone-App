@@ -12,4 +12,7 @@ export const getVideoUrl = (id) => {
 	return `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=videos`;
 };
 
+export const getCastUrl = (id) => {
+	return `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=en-US`;
+};
 export default requests;

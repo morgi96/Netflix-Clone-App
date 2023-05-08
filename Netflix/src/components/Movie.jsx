@@ -1,6 +1,3 @@
-import { FaRegHeart, FaHeart } from 'react-icons/fa';
-import { useState } from 'react';
-
 function Movie({ movie }) {
 	const setVoteColor = (vote) => {
 		if (vote >= 8) {
