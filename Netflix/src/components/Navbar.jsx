@@ -2,16 +2,24 @@ import { BsSearch } from 'react-icons/bs';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
-import SearchBar from './SearchBar';
 import userAvatar from '../assets/userAvatar.png';
+import ModalResults from './ModalResults';
 import './Navbar.css';
 
-function Navbar() {
+function Navbar({ movies, setMovies }) {
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [showDialogProfile, setShowDialogProfile] = useState(false);
+	const [showSearchModal, setShowSearchModal] = useState(false);
 	const { user, logOut } = UserAuth();
 
 	const navigate = useNavigate();
+
+	const openSearchModal = () => {
+		setShowSearchModal(!showSearchModal);
+	};
+	const closeSearchModal = () => {
+		setShowSearchModal(!showSearchModal);
+	};
 
 	const handleLogOut = async () => {
 		try {
@@ -26,6 +34,7 @@ function Navbar() {
 		setShowDialogProfile(!showDialogProfile);
 	};
 
+	// TODO
 	// useEffect(() => {
 	// 	const handleScroll = () => {
 	// 		if (window.scrollY > 100) {
@@ -40,6 +49,7 @@ function Navbar() {
 	// 		window.removeEventListener('scroll', handleScroll);
 	// 	};
 	// }, []);
+	// TODO
 
 	return (
 		<>
@@ -55,31 +65,30 @@ function Navbar() {
 						</h1>
 					</Link>
 				</div>
-
-				{/* Box with search button / user avatar & logout  */}
 				<div className='relative max-w-full'>
 					<div className='flex items-center space-x-4'>
 						{/* <SearchBar /> */}
-						<button className=''>
+						<div
+							onClick={openSearchModal}
+							className='bg-zinc-900/60 hover:bg-zinc-800 duration-[250ms] ese-in w-28 h-9 rounded-md flex justify-between items-center p-2 cursor-pointer'
+						>
+							<p className='text-white font-semibold text-sm'>Search...</p>
 							<BsSearch size={20} className='text-white' />
-						</button>
+						</div>
 						{user?.email && (
 							<div className='cursor-pointer flex flex-col items-center space-x-2'>
-								{/* <Link to='/account'> */}
 								<img
 									src={userAvatar}
 									alt='User Avatar'
-									className='w-[30px] rounded'
+									className='w-[35px] rounded'
 									onClick={handleShowDialog}
 								/>
-								{/* </Link> */}
-								{/* <HiChevronDown className='text-white' size={25} /> */}
 							</div>
 						)}
-						{/* FIXME  */}
+						{/* TODO  */}
 					</div>
 					{showDialogProfile && (
-						<div className='bg-black/70 text-white rounded-md absolute top-8 right-0 flex flex-col items-center w-20 py-1'>
+						<div className='bg-black/70 text-white rounded-md absolute top-10 right-0 flex flex-col items-center w-20 py-1'>
 							<div className='hover:text-black ease-out duration-[200ms] w-full-h-full '>
 								<button className='w-full h-full text-sm font-bold  hover:bg-white rounded p-[2px]'>
 									<Link to='/account'>Account</Link>
@@ -97,6 +106,13 @@ function Navbar() {
 					)}
 				</div>
 			</div>
+			{showSearchModal && (
+				<ModalResults
+					handleClose={closeSearchModal}
+					movies={movies}
+					setMovies={setMovies}
+				/>
+			)}
 		</>
 	);
 }

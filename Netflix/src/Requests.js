@@ -1,4 +1,4 @@
-const API_KEY = '38e88b677c92d9421f88622ed47e68ad';
+export const API_KEY = '38e88b677c92d9421f88622ed47e68ad';
 
 const requests = {
 	popular: `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`,
@@ -14,5 +14,9 @@ export const getVideoUrl = (id) => {
 
 export const getCastUrl = (id) => {
 	return `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=en-US`;
+};
+
+export const getMovieBySearch = (term) => {
+	return `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${term}`;
 };
 export default requests;

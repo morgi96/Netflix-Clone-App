@@ -5,13 +5,11 @@ import Account from './pages/Account';
 import { Routes, Route } from 'react-router-dom';
 import { AuthContextProvider } from './context/AuthContext';
 import ProtectRoute from './components/ProtectRoute';
-// import { RecoilRoot } from 'recoil';
 
 function App() {
 	return (
 		<>
 			<AuthContextProvider>
-				{/* <RecoilRoot> */}
 				<Routes>
 					<Route path='/' element={<Login />} />
 					<Route path='/home' element={<Home />} />
@@ -25,7 +23,6 @@ function App() {
 						}
 					/>
 				</Routes>
-				{/* </RecoilRoot> */}
 			</AuthContextProvider>
 		</>
 	);

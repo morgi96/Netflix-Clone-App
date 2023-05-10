@@ -34,7 +34,7 @@ function RowVertical({ dataURL, title, rowID }) {
 				/>
 				<div
 					id={'slider' + rowID}
-					className='w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide'
+					className='w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide space-x-1'
 				>
 					{moviesVertical.map((movie, i) => (
 						<MovieVertical key={i} movie={movie} />

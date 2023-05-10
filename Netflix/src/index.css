@@ -3,12 +3,18 @@
 @tailwind utilities;
 
 body {
-	background-color: #000000;
+	/* background-color: #000000; */
 	height: 100%;
 }
 
 @layer components {
 	.btnModal {
 		@apply border-[1px] p-[5px] h-7 w-7 md:h-9 md:w-9 rounded-lg flex items-center justify-center hover:bg-white hover:text-black transition ease-in-out duration-[250ms];
+	}
+}
+
+@layer base {
+	body {
+		@apply bg-zinc-900;
 	}
 }

@@ -1,14 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 import requests from '../Requests';
-import { useEffect, useState } from 'react';
-import Modal from './Modal';
-import { FaPlay, FaInfo, FaInfoCircle } from 'react-icons/fa';
+import { useState } from 'react';
+import { FaPlay } from 'react-icons/fa';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
+import Modal from './Modal';
 
-function Banner() {
+function Banner({ randomMovie, movies }) {
 	const [showModal, setShowModal] = useState(false);
-	const [randomMovie, setRandomMovie] = useState(null);
 
 	const handleOpen = () => {
 		setShowModal(true);
@@ -16,14 +15,6 @@ function Banner() {
 	const handleClose = () => {
 		setShowModal(false);
 	};
-
-	useEffect(() => {
-		axios.get(requests.popular).then(({ data: { results } }) => {
-			console.log(results);
-			const randomMovie = results[Math.floor(Math.random() * results.length)];
-			setRandomMovie(randomMovie);
-		});
-	}, []);
 
 	const truncate = (str, n) => {
 		if (str?.length > n) {
@@ -43,7 +34,7 @@ function Banner() {
 						className='object-cover object-center w-full h-[550px]'
 					/>
 					<div className='absolute w-full top-[25%] p-4 md:p-8'>
-						<h1 className='mb-4 font-bold text-2xl md:text-4xl'>
+						<h1 className='mb-4 font-bold text-3xl md:text-5xl'>
 							{randomMovie?.title}
 						</h1>
 						<div className='my-5 flex space-x-4'>

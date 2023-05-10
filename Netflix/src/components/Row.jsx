@@ -7,8 +7,8 @@ function Row({ title, dataURL, rowID }) {
 	const [movies, setMovies] = useState([]);
 
 	useEffect(() => {
-		axios.get(dataURL).then((response) => {
-			setMovies(response.data.results);
+		axios.get(dataURL).then(({ data: { results } }) => {
+			setMovies(results);
 		});
 	}, [dataURL]);
 
@@ -25,7 +25,7 @@ function Row({ title, dataURL, rowID }) {
 		<>
 			<div className='px-2 py-4'>
 				<span className='before:block before:absolute before:-inset-[1px] before:-skew-y-3 before:bg-red-600 relative inline-block'>
-					<span className='text-white font-bold md:text-xl lg:text-2xl px-5 relative '>
+					<span className='text-white font-bold md:text-xl lg:text-2xl px-5 relative'>
 						{title}
 					</span>
 				</span>
@@ -38,7 +38,7 @@ function Row({ title, dataURL, rowID }) {
 				/>
 				<div
 					id={'slider' + rowID}
-					className='w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide'
+					className='relative w-full overflow-x-scroll space-x-1 whitespace-nowrap scroll-smooth scrollbar-hide'
 				>
 					{movies.map((movie, i) => (
 						<Movie key={i} movie={movie} />
