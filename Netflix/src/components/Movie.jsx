@@ -46,11 +46,11 @@ function Movie({ movie }) {
 						{movie?.title}
 					</p>
 				</div> */}
-					{showModal && (
+					{/* {showModal && (
 						<div className='absolute w-[180px] sm:w-[220px] md:w-[260px] lg:w-[300px] bg-emerald-900 z-[100]'>
 							{movie.title}
 						</div>
-					)}
+					)} */}
 				</div>
 			</div>
 		</>

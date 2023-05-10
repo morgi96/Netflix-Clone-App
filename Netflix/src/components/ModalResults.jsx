@@ -13,37 +13,43 @@ function ModalResults({ handleClose }) {
 	const handleChange = (e) => {
 		setSearchTerm(e.target.value);
 	};
+	// const handleScroll = (e) => {
+	// 	e.preventDefault();
+	// };
+
+	// window.addEventListener('scroll', handleScroll);
+	// window.removeEventListener('scroll', handleScroll);
 
 	const handleSearch = async (searchTerm) => {
 		try {
 			if (searchTerm === '') {
 				setSearchResults([]);
-				return;
 			}
-
 			const response = await fetch(
 				`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchTerm}`
 			);
 			const data = await response.json();
-			setSearchResults(data.results);
+			const filteredResults = data.results.filter(
+				(movie) =>
+					movie.original_title
+						.toLowerCase()
+						.includes(searchTerm.toLowerCase()) &&
+					movie.backdrop_path !== null &&
+					movie.original_language === 'en'
+			);
+			setSearchResults(filteredResults);
 		} catch (error) {
 			console.error('Error data fetching, try again later...', error);
 		}
 	};
-	//#FIXME
-	// const handleSearch = (searchTerm) => {
-	// 	const filteredMovies = movies.filter((movie) =>
-	// 		movie.title.toLowerCase().includes(searchTerm.toLowerCase())
-	// 	);
-	// 	setSearchResults(filteredMovies);
-	// };
+	console.log(searchResults);
 
 	return (
 		<div>
 			<div className='fixed flex items-center justify-center top-0 left-0 bg-black/80 h-full w-full z-[50] blur-lg'></div>
 			<div
-				className='w-[700px]
-z-[100] fixed top-0 md:top-20 2xl:top-30 left-0 right-0 mx-auto max-w-5xl overflow-hidden rounded-md scrollbar-hide text-white bg-zinc-900 p-5'
+				className='w-[800px] h-screen
+z-[100] absolute top-0 md:top-20 2xl:top-30 left-0 right-0 mx-auto max-w-5xl overflow-hidden rounded-md text-white bg-zinc-900 p-5'
 			>
 				<div className='w-full flex m-auto'>
 					<form className='w-full flex space-x-4'>
@@ -56,6 +62,7 @@ z-[100] fixed top-0 md:top-20 2xl:top-30 left-0 right-0 mx-auto max-w-5xl overfl
 							type='search'
 							autoComplete='off'
 							spellCheck='false'
+							minLength='3'
 							maxLength='48'
 							value={searchTerm}
 							onChange={handleChange}
@@ -69,12 +76,24 @@ z-[100] fixed top-0 md:top-20 2xl:top-30 left-0 right-0 mx-auto max-w-5xl overfl
 					</form>
 				</div>
 				<div className='h-[1px] max-w-[100%] bg-zinc-800 mx-auto mt-4'></div>
-				<div className='w-full max-h-[700px]'>
-					<ul>
-						{searchResults.map((movie) => (
-							<li key={movie.id}>{movie.title}</li>
-						))}
-					</ul>
+				<div className='w-full max-h-[700px] relative overflow-y-scroll space-x-1  scroll-smooth scrollbar-hide'>
+					<div className='w-full'>
+						<ul>
+							{searchResults.map((movie) => (
+								<div className='bg-zinc-800 hover:bg-zinc-700 duration-[200ms] ease-in rounded-md flex p-2 mb-2'>
+									<img
+										src={`https://image.tmdb.org/t/p/w500/${movie?.backdrop_path}`}
+										className='h-28 rounded'
+										alt={movie?.title}
+									/>
+									<li key={movie?.id} className='ml-3'>
+										<p className='font-bold'>{movie?.original_title}</p>
+										{/* <p classaName='text-xs'>{movie?.overview}</p> */}
+									</li>
+								</div>
+							))}
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
