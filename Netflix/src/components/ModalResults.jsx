@@ -1,29 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { BsSearch } from 'react-icons/bs';
-import { getMovieBySearch, API_KEY } from '../Requests';
+import { API_KEY } from '../Requests';
+import { debounce } from 'lodash';
 
-function ModalResults({ handleClose }) {
+function ModalResults({ handleOpenModal }) {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
 
+	const delayCallAPi = useCallback(
+		debounce((searchTerm) => {
+			handleSearch(searchTerm), 3000;
+		}),
+		[]
+	);
+
 	useEffect(() => {
-		handleSearch(searchTerm);
-	}, [searchTerm]);
+		delayCallAPi(searchTerm);
+		return delayCallAPi.cancel;
+	}, [searchTerm, delayCallAPi]);
+
+	console.log(searchTerm, searchResults);
 
 	const handleChange = (e) => {
 		setSearchTerm(e.target.value);
 	};
-	// const handleScroll = (e) => {
-	// 	e.preventDefault();
-	// };
-
-	// window.addEventListener('scroll', handleScroll);
-	// window.removeEventListener('scroll', handleScroll);
 
 	const handleSearch = async (searchTerm) => {
 		try {
 			if (searchTerm === '') {
 				setSearchResults([]);
+				return;
 			}
 			const response = await fetch(
 				`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchTerm}`
@@ -35,7 +41,8 @@ function ModalResults({ handleClose }) {
 						.toLowerCase()
 						.includes(searchTerm.toLowerCase()) &&
 					movie.backdrop_path !== null &&
-					movie.original_language === 'en'
+					movie.original_language === 'en' &&
+					movie.vote_count > 200
 			);
 			setSearchResults(filteredResults);
 		} catch (error) {
@@ -48,7 +55,7 @@ function ModalResults({ handleClose }) {
 		<div>
 			<div className='fixed flex items-center justify-center top-0 left-0 bg-black/80 h-full w-full z-[50] blur-lg'></div>
 			<div
-				className='w-[800px] h-screen
+				className='w-[800px] max-h-[700px]
 z-[100] absolute top-0 md:top-20 2xl:top-30 left-0 right-0 mx-auto max-w-5xl overflow-hidden rounded-md text-white bg-zinc-900 p-5'
 			>
 				<div className='w-full flex m-auto'>
@@ -68,7 +75,7 @@ z-[100] absolute top-0 md:top-20 2xl:top-30 left-0 right-0 mx-auto max-w-5xl ove
 							onChange={handleChange}
 						></input>
 						<button
-							onClick={handleClose}
+							onClick={handleOpenModal}
 							className='block text-sm border-[1px] border-white px-2 h-6 rounded-lg self-auto'
 						>
 							esc

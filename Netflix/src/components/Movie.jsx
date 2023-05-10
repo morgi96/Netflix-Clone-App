@@ -33,11 +33,11 @@ function Movie({ movie }) {
 				>
 					{movie?.vote_average}
 				</div>
-				<div className=''>
+				<div className='hover:absolute'>
 					<img
 						// onMouseEnter={handleMouseEnter}
 						// onMouseLeave={handleMouseLeave}
-						className='w-full block rounded z-[100]'
+						className='w-full rounded z-[100]'
 						src={`https://image.tmdb.org/t/p/w500/${movie?.backdrop_path}`}
 						alt={movie?.title}
 					/>

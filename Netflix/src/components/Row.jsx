@@ -23,18 +23,18 @@ function Row({ title, dataURL, rowID }) {
 
 	return (
 		<>
-			<div className='px-2 py-4'>
+			<div className='px-2 py-4 relative'>
 				<span className='before:block before:absolute before:-inset-[1px] before:-skew-y-3 before:bg-red-600 relative inline-block'>
 					<span className='text-white font-bold md:text-xl lg:text-2xl px-5 relative'>
 						{title}
 					</span>
 				</span>
 			</div>
-			<div className='relative flex items-center group'>
+			<div className='relative flex items-center '>
 				<BiLeftArrow
 					onClick={prevBtn}
 					size={35}
-					className='bg-white left-0 rounded-lg absolute opacity-50 hover:opacity-100 cursor-pointer z-[20] hidden group-hover:block ml-2'
+					className='bg-white left-0 rounded-lg absolute opacity-50 hover:opacity-100 cursor-pointer z-[20] hidden  ml-2'
 				/>
 				<div
 					id={'slider' + rowID}
@@ -47,7 +47,7 @@ function Row({ title, dataURL, rowID }) {
 				<BiRightArrow
 					onClick={nextBtn}
 					size={35}
-					className='bg-white right-0 rounded-lg absolute opacity-50 hover:opacity-100 cursor-pointer z-[20] hidden  group-hover:block mr-2'
+					className='bg-white right-0 rounded-lg absolute opacity-50 hover:opacity-100 cursor-pointer z-[20] hidden   mr-2'
 				/>
 			</div>
 		</>

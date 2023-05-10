@@ -6,20 +6,29 @@ import userAvatar from '../assets/userAvatar.png';
 import ModalResults from './ModalResults';
 import './Navbar.css';
 
-function Navbar({ movies, setMovies }) {
+function Navbar() {
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [showDialogProfile, setShowDialogProfile] = useState(false);
-	const [showSearchModal, setShowSearchModal] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
 	const { user, logOut } = UserAuth();
 
 	const navigate = useNavigate();
 
-	const openSearchModal = () => {
-		setShowSearchModal(!showSearchModal);
+	const handleOpenModal = () => {
+		setIsOpen(!isOpen);
 	};
-	const closeSearchModal = () => {
-		setShowSearchModal(!showSearchModal);
-	};
+
+	useEffect(() => {
+		const handleKeyPress = (e) => {
+			if (e.key === 'Escape') setIsOpen(false);
+		};
+
+		document.addEventListener('keydown', handleKeyPress);
+
+		return () => {
+			document.removeEventListener('keydown', handleKeyPress);
+		};
+	}, []);
 
 	const handleLogOut = async () => {
 		try {
@@ -69,7 +78,7 @@ function Navbar({ movies, setMovies }) {
 					<div className='flex items-center space-x-4'>
 						{/* <SearchBar /> */}
 						<div
-							onClick={openSearchModal}
+							onClick={handleOpenModal}
 							className='bg-zinc-900/60 hover:bg-zinc-800 duration-[250ms] ese-in w-28 h-9 rounded-md flex justify-between items-center p-2 cursor-pointer'
 						>
 							<p className='text-white font-semibold text-sm'>Search...</p>
@@ -106,13 +115,7 @@ function Navbar({ movies, setMovies }) {
 					)}
 				</div>
 			</div>
-			{showSearchModal && (
-				<ModalResults
-					handleClose={closeSearchModal}
-					movies={movies}
-					setMovies={setMovies}
-				/>
-			)}
+			{isOpen && <ModalResults handleOpenModal={handleOpenModal} />}
 		</>
 	);
 }
