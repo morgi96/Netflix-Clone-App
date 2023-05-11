@@ -67,7 +67,7 @@ z-[100] fixed top-0 md:top-5 2xl:top-10 left-0 right-0 mx-auto max-w-5xl overflo
 						height='100%'
 						style={{ position: 'absolute', top: '0', left: '0' }}
 						muted={false}
-						controls
+						controls={false}
 						volume={0.5}
 						playing={playTrailer}
 						url={`https://www.youtube.com/watch?v=${trailer?.key}`}

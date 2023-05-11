@@ -22,10 +22,10 @@ function Home() {
 		<>
 			<Navbar />
 			<Banner randomMovie={randomMovie} movies={movies} />
-			<RowVertical rowID='1' title='Latest' dataURL={requests.latest} />
-			<Row rowID='2' title='Top rated' dataURL={requests.topRated} />
-			<Row rowID='3' title='Upcoming' dataURL={requests.upcoming} />
-			<Row rowID='4' title='Popular' dataURL={requests.popular} />
+			<RowVertical title='Latest' dataURL={requests.latest} />
+			<Row title='Top rated' dataURL={requests.topRated} />
+			<Row title='Upcoming' dataURL={requests.upcoming} />
+			<Row title='Popular' dataURL={requests.popular} />
 		</>
 	);
 }

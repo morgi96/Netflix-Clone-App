@@ -14,7 +14,7 @@ function Movie({ movie }) {
 
 	const setVoteColor = (vote) => {
 		if (vote >= 8) {
-			return 'text-green-900';
+			return 'text-green-600';
 		}
 		if (vote >= 5) {
 			return 'text-orange-600';
@@ -25,19 +25,19 @@ function Movie({ movie }) {
 
 	return (
 		<>
-			<div className='relative w-[180px] sm:w-[220px] md:w-[260px] lg:w-[300px] inline-block cursor-pointer hover:scale-110 duration-[300ms] ease-out '>
+			<div className='relative w-[180px] sm:w-[220px] md:w-[260px] lg:w-[300px] inline-block cursor-pointer hover:scale-110 duration-[300ms] ease-out space-x-2'>
 				<div
-					className={`bg-black/80 px-2 py-2 absolute top-4 right-4  ${setVoteColor(
+					className={`bg-black/80 px-2 py-2 absolute top-2 right-2  ${setVoteColor(
 						movie?.vote_average
 					)} rounded text-md font-bold`}
 				>
 					{movie?.vote_average}
 				</div>
-				<div className='hover:absolute'>
+				<div className=''>
 					<img
 						// onMouseEnter={handleMouseEnter}
 						// onMouseLeave={handleMouseLeave}
-						className='w-full rounded z-[100]'
+						className='w-full rounded object-cover'
 						src={`https://image.tmdb.org/t/p/w500/${movie?.backdrop_path}`}
 						alt={movie?.title}
 					/>

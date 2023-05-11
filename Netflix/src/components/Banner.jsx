@@ -1,6 +1,3 @@
-import React from 'react';
-import axios from 'axios';
-import requests from '../Requests';
 import { useState } from 'react';
 import { FaPlay } from 'react-icons/fa';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
@@ -25,13 +22,13 @@ function Banner({ randomMovie, movies }) {
 	};
 	return (
 		<>
-			<div className='w-full h-[550px] text-white'>
+			<div className='w-full h-[600px] text-white'>
 				<div className='w-full h-full'>
-					<div className='absolute w-full h-[550px] bg-gradient-to-r from-black'></div>
+					<div className='absolute w-full h-[600px] bg-gradient-to-r from-black'></div>
 					<img
 						src={`https://image.tmdb.org/t/p/original/${randomMovie?.backdrop_path}`}
 						alt={randomMovie?.title}
-						className='object-cover object-center w-full h-[550px]'
+						className='object-cover object-center w-full h-[600px]'
 					/>
 					<div className='absolute w-full top-[25%] p-4 md:p-8'>
 						<h1 className='mb-4 font-bold text-3xl md:text-5xl'>

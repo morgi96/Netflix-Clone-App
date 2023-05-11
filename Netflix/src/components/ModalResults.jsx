@@ -7,17 +7,17 @@ function ModalResults({ handleOpenModal }) {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
 
-	const delayCallAPi = useCallback(
+	const delayCallApi = useCallback(
 		debounce((searchTerm) => {
-			handleSearch(searchTerm), 3000;
-		}),
+			handleSearch(searchTerm);
+		}, 1000),
 		[]
 	);
 
 	useEffect(() => {
-		delayCallAPi(searchTerm);
-		return delayCallAPi.cancel;
-	}, [searchTerm, delayCallAPi]);
+		delayCallApi(searchTerm);
+		return delayCallApi.cancel;
+	}, [searchTerm, delayCallApi]);
 
 	console.log(searchTerm, searchResults);
 
@@ -49,7 +49,6 @@ function ModalResults({ handleOpenModal }) {
 			console.error('Error data fetching, try again later...', error);
 		}
 	};
-	console.log(searchResults);
 
 	return (
 		<div>
@@ -83,11 +82,14 @@ z-[100] absolute top-0 md:top-20 2xl:top-30 left-0 right-0 mx-auto max-w-5xl ove
 					</form>
 				</div>
 				<div className='h-[1px] max-w-[100%] bg-zinc-800 mx-auto mt-4'></div>
-				<div className='w-full max-h-[700px] relative overflow-y-scroll space-x-1  scroll-smooth scrollbar-hide'>
-					<div className='w-full'>
-						<ul>
+				<div className='w-full max-h-[700px] relative overflow-y-scroll scroll-smooth scrollbar-hide'>
+					<div className='p-2'>
+						<ul className=''>
 							{searchResults.map((movie) => (
-								<div className='bg-zinc-800 hover:bg-zinc-700 duration-[200ms] ease-in rounded-md flex p-2 mb-2'>
+								<div
+									key={movie.release_date}
+									className='bg-zinc-800 hover:bg-zinc-700 duration-[200ms] ease-in rounded-md flex p-2 mb-2'
+								>
 									<img
 										src={`https://image.tmdb.org/t/p/w500/${movie?.backdrop_path}`}
 										className='h-28 rounded'

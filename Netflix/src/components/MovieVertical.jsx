@@ -1,11 +1,15 @@
+import { BsCalendarCheck } from 'react-icons/bs';
+
 function MovieVertical({ movie }) {
 	return (
-		<div className='relative w-[180px] sm:w-[220px] md:w-[260px] lg:w-[320px] inline-block cursor-pointer p-2 hover:scale-105 duration-[300ms] ease-out'>
-			<div className='bg-red-700 px-1 py-1 absolute top-0 right-0 text-white rounded-bl-lg text-sm font-bold'>
-				{movie?.release_date}
+		<div className='w-[180px] sm:w-[220px] md:w-[260px] lg:w-[300px] inline-block cursor-pointer p-1 duration-[300ms] ease-out my-[40px]'>
+			<div className='bg-red-700 p-4 absolute top-1 right-1 rounded-bl-lg text-sm font-bold '>
+				{/* {movie?.release_date} */}
+				<BsCalendarCheck size={20} className='text-white' />
 			</div>
 			<img
-				className='w-full h-auto block object-cover'
+				className='object-cover hover:scale-[1.2] duration-[250ms] ease-out
+					'
 				src={`https://image.tmdb.org/t/p/w500/${movie?.poster_path}`}
 				alt={movie?.title}
 			/>
