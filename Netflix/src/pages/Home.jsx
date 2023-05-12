@@ -17,16 +17,19 @@ function Home() {
 			setMovies(results);
 		});
 	}, []);
+	console.log(movies);
 
 	return (
-		<>
+		<main>
 			<Navbar />
 			<Banner randomMovie={randomMovie} movies={movies} />
-			<RowVertical title='Latest' dataURL={requests.latest} />
+			{/* <RowVertical title='Latest' dataURL={requests.latest} /> */}
+			{/* <main className='w-full overflow-hidden'> */}
 			<Row title='Top rated' dataURL={requests.topRated} />
 			<Row title='Upcoming' dataURL={requests.upcoming} />
 			<Row title='Popular' dataURL={requests.popular} />
-		</>
+			{/* </main> */}
+		</main>
 	);
 }
 

@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { FaPlay, FaThumbsUp } from 'react-icons/fa';
+import { BiPlus } from 'react-icons/bi';
+import { BsHandThumbsUp, BsChevronDown } from 'react-icons/bs';
 
 function Movie({ movie }) {
 	// const [showModal, setShowModal] = useState(false);
@@ -12,49 +15,47 @@ function Movie({ movie }) {
 	// };
 	// console.log(showModal);
 
-	const setVoteColor = (vote) => {
-		if (vote >= 8) {
-			return 'text-green-600';
-		}
-		if (vote >= 5) {
-			return 'text-orange-600';
-		} else {
-			return 'text-red-900';
-		}
-	};
+	// const setVoteColor = (vote) => {
+	// 	if (vote >= 8) {
+	// 		return 'text-green-600';
+	// 	}
+	// 	if (vote >= 5) {
+	// 		return 'text-orange-600';
+	// 	} else {
+	// 		return 'text-red-900';
+	// 	}
+	// };
 
 	return (
-		<>
-			<div className='relative w-[180px] sm:w-[220px] md:w-[260px] lg:w-[300px] inline-block cursor-pointer hover:scale-110 duration-[300ms] ease-out space-x-2'>
-				<div
-					className={`bg-black/80 px-2 py-2 absolute top-2 right-2  ${setVoteColor(
-						movie?.vote_average
-					)} rounded text-md font-bold`}
-				>
-					{movie?.vote_average}
-				</div>
-				<div className=''>
-					<img
-						// onMouseEnter={handleMouseEnter}
-						// onMouseLeave={handleMouseLeave}
-						className='w-full rounded object-cover'
-						src={`https://image.tmdb.org/t/p/w500/${movie?.backdrop_path}`}
-						alt={movie?.title}
-					/>
-					{/* <div className='absolute top-0 left-0 w-full h-full opacity-0 hover:opacity-100 hover:bg-black/70 duration-[300ms] ease-in-out text-white'>
-					<p className='white-space-normal text-xs md:text-sm  font-bold flex items-center justify-center h-full text-center'>
-						{movie?.title}
-					</p>
-				</div> */}
-					{/* {showModal && (
-						<div className='absolute w-[180px] sm:w-[220px] md:w-[260px] lg:w-[300px] bg-emerald-900 z-[100]'>
-							{movie.title}
-						</div>
-					)} */}
-				</div>
-			</div>
-		</>
+		// <div className=''>
+		<div className='w-[400px] hover:w-[600px]'>
+			<img
+				className='object-cover h-[160px]'
+				src={`https://image.tmdb.org/t/p/w500/${movie?.backdrop_path}`}
+				alt={movie?.title}
+			/>
+		</div>
+		// </div>
+		// <div className='shrink w-full'>
+		// 	<div className='h-[180px]'>
+		// 		<img
+		// 			className='relative object-cover w-full h-full'
+		// 			src={`https://image.tmdb.org/t/p/w500/${movie?.backdrop_path}`}
+		// 			alt={movie?.title}
+		// 		/>
+		// 	</div>
+		// </div>
 	);
 }
 
 export default Movie;
+
+// {/* <div className='text-white bg-black flex justify-between p-2'>
+// 				<div className='text-lg flex space-x-2'>
+// 					<FaPlay size={25} />
+// 					<BiPlus size={25} />
+// 					<BsHandThumbsUp size={25} />
+// 					<BsChevronDown size={25} className='text-white' />
+// 				</div>
+// 			</div>
+// 			<div className='text-lg'>{movie?.title}</div> */}
