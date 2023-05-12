@@ -22,22 +22,7 @@ body {
 		@apply bg-zinc-900;
 	}
 }
-.wrapper {
-	display: grid;
-	grid-template-columns: repeat(3, 100%);
+
+.modal-open {
 	overflow: hidden;
-	scroll-behavior: smooth;
-}
-
-.section {
-	width: 100%;
-	position: relative;
-	display: grid;
-	grid-template-columns: repeat(5, auto);
-	margin: 20px 0;
-}
-
-.item {
-	padding: 0 2px;
-	transition: 250ms all;
 }

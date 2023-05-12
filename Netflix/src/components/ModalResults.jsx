@@ -3,7 +3,7 @@ import { BsSearch } from 'react-icons/bs';
 import { API_KEY } from '../Requests';
 import { debounce } from 'lodash';
 
-function ModalResults({ handleOpenModal }) {
+function ModalResults({ handleModal }) {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
 
@@ -19,10 +19,12 @@ function ModalResults({ handleOpenModal }) {
 		return delayCallApi.cancel;
 	}, [searchTerm, delayCallApi]);
 
-	console.log(searchTerm, searchResults);
-
 	const handleChange = (e) => {
 		setSearchTerm(e.target.value);
+	};
+
+	const handleSubmitForm = (e) => {
+		if (e.key === 'Enter') e.preventDefault();
 	};
 
 	const handleSearch = async (searchTerm) => {
@@ -64,6 +66,7 @@ z-[100] absolute top-0 md:top-20 2xl:top-30 left-0 right-0 mx-auto max-w-5xl ove
 						</label>
 						<input
 							className='w-full h-full flex-1 bg-transparent outline-none pl-2 rounded-md text-white font-bold text-lg cursor-pointer'
+							onKeyDown={handleSubmitForm}
 							placeholder='Search...'
 							type='search'
 							autoComplete='off'
@@ -74,7 +77,7 @@ z-[100] absolute top-0 md:top-20 2xl:top-30 left-0 right-0 mx-auto max-w-5xl ove
 							onChange={handleChange}
 						></input>
 						<button
-							onClick={handleOpenModal}
+							onClick={handleModal}
 							className='block text-sm border-[1px] border-white px-2 h-6 rounded-lg self-auto'
 						>
 							esc

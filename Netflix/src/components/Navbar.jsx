@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
 import userAvatar from '../assets/userAvatar.png';
 import ModalResults from './ModalResults';
-import './Navbar.css';
 
 function Navbar() {
 	const [isScrolled, setIsScrolled] = useState(false);
@@ -14,7 +13,7 @@ function Navbar() {
 
 	const navigate = useNavigate();
 
-	const handleOpenModal = () => {
+	const handleModal = () => {
 		setIsOpen(!isOpen);
 	};
 
@@ -29,6 +28,15 @@ function Navbar() {
 			document.removeEventListener('keydown', handleKeyPress);
 		};
 	}, []);
+
+	useEffect(() => {
+		const body = document.querySelector('body');
+		if (isOpen === true) {
+			body.classList.add('modal-open');
+		} else {
+			body.classList.remove('modal-open');
+		}
+	}, [isOpen]);
 
 	const handleLogOut = async () => {
 		try {
@@ -78,7 +86,7 @@ function Navbar() {
 					<div className='flex items-center space-x-4'>
 						{/* <SearchBar /> */}
 						<div
-							onClick={handleOpenModal}
+							onClick={handleModal}
 							className='bg-zinc-900/60 hover:bg-zinc-800 duration-[250ms] ese-in w-28 h-9 rounded-md flex justify-between items-center p-2 cursor-pointer'
 						>
 							<p className='text-white font-semibold text-sm'>Search...</p>
@@ -115,7 +123,7 @@ function Navbar() {
 					)}
 				</div>
 			</div>
-			{isOpen && <ModalResults handleOpenModal={handleOpenModal} />}
+			{isOpen && <ModalResults handleModal={handleModal} />}
 		</>
 	);
 }
