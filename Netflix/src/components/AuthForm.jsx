@@ -1,12 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { UserAuth } from '../context/AuthContext';
+import { useState, useEffect } from 'react';
 
 function AuthForm({ title, actionText, accountText, onSubmit }) {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const navigate = useNavigate();
 	const [error, setError] = useState('');
+	const navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -18,6 +17,16 @@ function AuthForm({ title, actionText, accountText, onSubmit }) {
 			setError('Password or email is incorrect.');
 		}
 	};
+
+	useEffect(() => {
+		if (error) {
+			const timeout = setTimeout(() => {
+				setError('');
+			}, 5000);
+
+			return () => clearTimeout(timeout);
+		}
+	}, [error]);
 
 	return (
 		<div className='min-h-full relative'>
@@ -32,7 +41,7 @@ function AuthForm({ title, actionText, accountText, onSubmit }) {
 					alt='Netflix Clone Login Screen'
 				/>
 			</div>
-			<div className='before:content[] before:h-[91px] before:block after:content[] after:h-[236px] after:block max-w-[500px] md:max-w-[550px] xl:max-w-[650px] min-h-screen bg-transparent rounded mx-auto -mb[236px] px-[5%]'>
+			<div className='before:content[] before:h-[91px] before:block after:content[] after:h-[236px] after:block max-w-[500px] md:max-w-[600px] xl:max-w-[650px] min-h-screen bg-transparent rounded mx-auto -mb[236px] px-[5%]'>
 				<div>
 					<div className='bg-black/60 flex flex-col rounded-md text-white text-xl px-16 py-14 z-[90] w-full'>
 						<div className=''>

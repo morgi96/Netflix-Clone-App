@@ -28,45 +28,31 @@ function Movie({ movie }) {
 	// };
 
 	return (
-		<div className='w-[320px] hover:-translate-y-[100px] '>
-			<div className='hover:h[100px] w-[320px] shrink grow cursor-pointer'>
-				<div className='block z-[10]'>
-					<img
-						onMouseEnter={() => setIsHovered(true)}
-						onMouseLeave={() => setIsHovered(false)}
-						className='object-cover hover:h-[120px]'
-						src={`https://image.tmdb.org/t/p/w500/${movie?.backdrop_path}`}
-						alt={movie?.title}
-					/>
-					{isHovered && <div className='text-white'>{movie?.title}</div>}
-				</div>
+		<div classaName='block w-[320px] h-[160px]'>
+			<div className='block w-[320px] h-[160px] hover:w-[400px] hover:mx-[10px] hover:my-[10px] hover:h-[240px] hover:scale-105 duration-[300ms] ease-out shrink grow'>
+				<img
+					onMouseEnter={() => setIsHovered(true)}
+					onMouseLeave={() => setIsHovered(false)}
+					className='object-cover w-full h-full block'
+					src={`https://image.tmdb.org/t/p/w500/${movie?.backdrop_path}`}
+					alt={movie?.title}
+				/>
+				{isHovered && <div className='w-full text-white'>{movie?.title}</div>}
 			</div>
 		</div>
-
-		//FIXME - prawidłowy kod
-		// <div classaName='overflow-hidden'>
-		// 	<div className='block w-[320px] h-[160px] hover:w-[400px] hover:mx-[10px] hover:my-[10px] hover:h-[240px] hover:scale-105 duration-[300ms] ease-out shrink grow'>
-		// 		<img
-		// 			onMouseEnter={() => setIsHovered(true)}
-		// 			onMouseLeave={() => setIsHovered(false)}
-		// 			className='object-cover w-full h-[160px] block'
-		// 			src={`https://image.tmdb.org/t/p/w500/${movie?.backdrop_path}`}
-		// 			alt={movie?.title}
-		// 		/>
-		// 		{isHovered && <div className='w-full text-white'>{movie?.title}</div>}
-		// 	</div>
-		//FIXME
-		// </div>
-		// <div className='shrink w-full'>
-		// 	<div className='h-[180px]'>
-		// 		<img
-		// 			className='relative object-cover w-full h-full'
-		// 			src={`https://image.tmdb.org/t/p/w500/${movie?.backdrop_path}`}
-		// 			alt={movie?.title}
-		// 		/>
-		// 	</div>
-		// </div>
 	);
+
+	//FIXME - prawidłowy kod
+
+	// <div className='shrink w-full'>
+	// 	<div className='h-[180px]'>
+	// 		<img
+	// 			className='relative object-cover w-full h-full'
+	// 			src={`https://image.tmdb.org/t/p/w500/${movie?.backdrop_path}`}
+	// 			alt={movie?.title}
+	// 		/>
+	// 	</div>
+	// </div>
 }
 
 export default Movie;
