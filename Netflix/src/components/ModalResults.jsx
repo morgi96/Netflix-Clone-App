@@ -1,11 +1,33 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { BsSearch } from 'react-icons/bs';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { BsFillEnvelopePaperHeartFill, BsSearch } from 'react-icons/bs';
 import { API_KEY } from '../Requests';
 import { debounce } from 'lodash';
 
 function ModalResults({ handleModal }) {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
+	const [currentIndex, setCurrentIndex] = useState(0);
+
+	// useEffect(() => {
+	const handleKeyDown = (e) => {
+		if (e.key === 'Enter') {
+			e.preventDefault();
+		} else if (e.key === 'ArrowUp') {
+			setCurrentIndex((currentIndex) =>
+				currentIndex > 0 ? currentIndex - 1 : currentIndex
+			);
+		} else if (e.key === 'ArrowDown') {
+			setCurrentIndex((currentIndex) =>
+				currentIndex < searchResults.length - 1
+					? currentIndex + 1
+					: currentIndex
+			);
+		}
+	};
+	// }, []);
+
+	console.log(searchResults);
+	console.log(currentIndex);
 
 	const delayCallApi = useCallback(
 		debounce((searchTerm) => {
@@ -21,10 +43,6 @@ function ModalResults({ handleModal }) {
 
 	const handleChange = (e) => {
 		setSearchTerm(e.target.value);
-	};
-
-	const handleSubmitForm = (e) => {
-		if (e.key === 'Enter') e.preventDefault();
 	};
 
 	const handleSearch = async (searchTerm) => {
@@ -66,7 +84,7 @@ z-[100] absolute top-0 md:top-20 2xl:top-30 left-0 right-0 mx-auto max-w-5xl ove
 						</label>
 						<input
 							className='w-full h-full flex-1 bg-transparent outline-none pl-2 rounded-md text-white font-bold text-lg cursor-pointer'
-							onKeyDown={handleSubmitForm}
+							// onKeyDown={handleSubmitForm}
 							placeholder='Search...'
 							type='search'
 							autoComplete='off'
@@ -75,6 +93,7 @@ z-[100] absolute top-0 md:top-20 2xl:top-30 left-0 right-0 mx-auto max-w-5xl ove
 							maxLength='48'
 							value={searchTerm}
 							onChange={handleChange}
+							onKeyDown={handleKeyDown}
 						></input>
 						<button
 							onClick={handleModal}
@@ -88,10 +107,12 @@ z-[100] absolute top-0 md:top-20 2xl:top-30 left-0 right-0 mx-auto max-w-5xl ove
 				<div className='w-full max-h-[700px] relative overflow-y-scroll scroll-smooth scrollbar-hide'>
 					<div className='p-2'>
 						<ul className=''>
-							{searchResults.map((movie) => (
+							{searchResults.map((movie, i) => (
 								<div
 									key={movie.release_date}
-									className='bg-zinc-800 hover:bg-zinc-700 duration-[200ms] ease-in rounded-md flex p-2 mb-2'
+									className={`bg-zinc-800 hover:bg-zinc-700 duration-[200ms] ease-in rounded-md flex p-2 mb-2 ${
+										i === currentIndex ? 'bg-zinc-700' : ''
+									}`}
 								>
 									<img
 										src={`https://image.tmdb.org/t/p/w500/${movie?.backdrop_path}`}
