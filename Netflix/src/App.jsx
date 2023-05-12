@@ -12,7 +12,14 @@ function App() {
 			<AuthContextProvider>
 				<Routes>
 					<Route path='/' element={<Login />} />
-					<Route path='/home' element={<Home />} />
+					<Route
+						path='/home'
+						element={
+							<ProtectRoute>
+								<Home />
+							</ProtectRoute>
+						}
+					/>
 					<Route path='/signup' element={<Signup />} />
 					<Route
 						path='/account'

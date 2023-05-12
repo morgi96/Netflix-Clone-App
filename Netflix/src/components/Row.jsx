@@ -5,7 +5,6 @@ import Movie from './Movie';
 
 function Row({ dataURL, title }) {
 	const [movies, setMovies] = useState([]);
-	const [isHovered, setIsHovered] = useState(false);
 	const sliderRef = useRef(null);
 
 	useEffect(() => {
@@ -21,17 +20,13 @@ function Row({ dataURL, title }) {
 	return (
 		<section className='w-full'>
 			<div className='px-2 py-4 my-4 overflow-hidden'>
-				<span className='before:block before:absolute before:-inset-[1px] before:-skew-y-3 before:bg-red-600 relative inline-block'>
-					<span className='text-white font-bold md:text-xl lg:text-2xl px-5 relative'>
-						{title}
-					</span>
+				{/* <span className='relative inline-block before:block before:absolute before:-inset-[1px] before:-skew-y-3 before:bg-red-600'> */}
+				<span className='relative text-white font-bold md:text-xl lg:text-2xl px-5'>
+					{title}
 				</span>
+				{/* </span> */}
 			</div>
-			<div
-				className='relative flex items-center'
-				onMouseEnter={() => setIsHovered(true)}
-				onMouseLeave={() => setIsHovered(false)}
-			>
+			<div className='relative flex items-center h-[180px]'>
 				<BiLeftArrow
 					onClick={() => scrollSlider(-1000)}
 					size={35}
@@ -40,7 +35,7 @@ function Row({ dataURL, title }) {
 
 				<div
 					ref={sliderRef}
-					className='p-1 flex space-x-2 overflow-x-scroll scroll-smooth scrollbar-hide'
+					className='flex overflow-x-scroll scroll-smooth scrollbar-hide'
 				>
 					{movies.map((movie) => (
 						<Movie key={movie?.id} movie={movie} />

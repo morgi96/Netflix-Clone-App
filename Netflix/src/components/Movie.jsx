@@ -5,16 +5,6 @@ import { BsHandThumbsUp, BsChevronDown } from 'react-icons/bs';
 
 function Movie({ movie }) {
 	const [isHovered, setIsHovered] = useState(false);
-	// const [showModal, setShowModal] = useState(false);
-
-	// const handleMouseEnter = () => {
-	// 	setShowModal(true);
-	// };
-
-	// const handleMouseLeave = () => {
-	// 	setShowModal(false);
-	// };
-	// console.log(showModal);
 
 	// const setVoteColor = (vote) => {
 	// 	if (vote >= 8) {
@@ -28,41 +18,50 @@ function Movie({ movie }) {
 	// };
 
 	return (
-		<div classaName='block w-[320px] h-[160px]'>
-			<div className='block w-[320px] h-[160px] hover:w-[400px] hover:mx-[10px] hover:my-[10px] hover:h-[240px] hover:scale-105 duration-[300ms] ease-out shrink grow'>
+		<div className='relative w-[600px] h-[300px] p-2 flex items-center rounded'>
+			<div
+				className='relative block w-[300px] h-[160px] hover:top-[-40px] duration-[350ms] hover:scale-[1.2] transition-transform ease-out z-[15] mx-2'
+				onMouseEnter={() => setIsHovered(true)}
+				onMouseLeave={() => setIsHovered(false)}
+			>
 				<img
-					onMouseEnter={() => setIsHovered(true)}
-					onMouseLeave={() => setIsHovered(false)}
-					className='object-cover w-full h-full block'
+					className='object-cover w-full h-full relative hover:z-[50]'
 					src={`https://image.tmdb.org/t/p/w500/${movie?.backdrop_path}`}
 					alt={movie?.title}
 				/>
-				{isHovered && <div className='w-full text-white'>{movie?.title}</div>}
+				{isHovered && (
+					<div className='w-full p-2 bg-zinc-900 rounded-b overflow-y-hidden'>
+						<div className='flex items-center justify-between text-white w-full'>
+							<div className='flex space-x-2'>
+								<FaPlay
+									size={30}
+									className='p-1 border border-white rounded-full'
+								/>
+								<BiPlus
+									size={30}
+									className='p-1 border border-white rounded-full'
+								/>
+								<BsHandThumbsUp
+									size={30}
+									className='p-1 border border-white rounded-full'
+								/>
+							</div>
+							<div className=' text-white p-1 border border-white rounded-md'>
+								<BsChevronDown size={20} />
+							</div>
+						</div>
+						<div className='flex items-center space-x-2 mt-2'>
+							<p className='font-semibold text-xs text-green-500'>
+								Match: {Math.round(movie?.vote_average * 10)}%
+							</p>
+							<p className='text-white flex justify-center items-center px-2 text-[10px] border-[1px] font-semibold ml-3 rounded-md'>
+								HD
+							</p>
+						</div>
+					</div>
+				)}
 			</div>
 		</div>
 	);
-
-	//FIXME - prawidłowy kod
-
-	// <div className='shrink w-full'>
-	// 	<div className='h-[180px]'>
-	// 		<img
-	// 			className='relative object-cover w-full h-full'
-	// 			src={`https://image.tmdb.org/t/p/w500/${movie?.backdrop_path}`}
-	// 			alt={movie?.title}
-	// 		/>
-	// 	</div>
-	// </div>
 }
-
 export default Movie;
-
-// {/* <div className='text-white bg-black flex justify-between p-2'>
-// 				<div className='text-lg flex space-x-2'>
-// 					<FaPlay size={25} />
-// 					<BiPlus size={25} />
-// 					<BsHandThumbsUp size={25} />
-// 					<BsChevronDown size={25} className='text-white' />
-// 				</div>
-// 			</div>
-// 			<div className='text-lg'>{movie?.title}</div> */}

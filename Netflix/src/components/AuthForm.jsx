@@ -41,8 +41,8 @@ function AuthForm({ title, actionText, accountText, onSubmit }) {
 					alt='Netflix Clone Login Screen'
 				/>
 			</div>
-			<div className='before:content[] before:h-[91px] before:block after:content[] after:h-[236px] after:block max-w-[500px] md:max-w-[600px] xl:max-w-[650px] min-h-screen bg-transparent rounded mx-auto -mb[236px] px-[5%]'>
-				<div>
+			<div className='before:content[] before:h-[91px] before:block after:content[] after:h-[236px] after:block max-w-[650px] min-h-screen bg-transparent rounded mx-auto -mb[236px] px-[5%]'>
+				<div className='max-w-[650px]'>
 					<div className='bg-black/60 flex flex-col rounded-md text-white text-xl px-16 py-14 z-[90] w-full'>
 						<div className=''>
 							<h1 className='text-white text-3xl font-semibold mb-6'>
