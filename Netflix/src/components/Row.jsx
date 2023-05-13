@@ -19,14 +19,14 @@ function Row({ dataURL, title }) {
 
 	return (
 		<section className='w-full'>
-			<div className='px-2 py-4 my-4 overflow-hidden'>
+			<div className='px-4 py-4 my-4 overflow-hidden'>
 				{/* <span className='relative inline-block before:block before:absolute before:-inset-[1px] before:-skew-y-3 before:bg-red-600'> */}
 				<span className='relative text-white font-bold md:text-xl lg:text-2xl px-5'>
 					{title}
 				</span>
 				{/* </span> */}
 			</div>
-			<div className='relative flex items-center h-[200px]'>
+			<div className='relative flex items-center'>
 				<BiLeftArrow
 					onClick={() => scrollSlider(-1000)}
 					size={35}
@@ -34,7 +34,7 @@ function Row({ dataURL, title }) {
 				/>
 				<div
 					ref={sliderRef}
-					className='flex overflow-x-scroll scroll-smooth scrollbar-hide'
+					className='flex overflow-x-scroll scroll-smooth scrollbar-hide relative items-center'
 				>
 					{movies.map((movie) => (
 						<Movie key={movie?.id} movie={movie} />

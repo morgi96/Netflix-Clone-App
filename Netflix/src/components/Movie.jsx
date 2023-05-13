@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FaPlay, FaThumbsUp } from 'react-icons/fa';
+import { FaPlay } from 'react-icons/fa';
 import { BiPlus } from 'react-icons/bi';
 import { BsHandThumbsUp, BsChevronDown } from 'react-icons/bs';
 
@@ -18,9 +18,9 @@ function Movie({ movie }) {
 	// };
 
 	return (
-		<div className='relative w-[600px] h-[500px] px-1 flex items-center rounded'>
+		<div className='w-[300px] h-[160px] block relative items-center rounded'>
 			<div
-				className='block w-[300px] h-[160px] duration-[300ms] hover:scale-[1.1] hover:w-[320px] transition:transform ease z-[15] mx-2 grow'
+				className='hover:absolute block w-[300px] h-[160px] duration-[300ms] hover:scale-[1.2] transition:transform ease hover:z-[10] mx-2 grow'
 				onMouseEnter={() => setIsHovered(true)}
 				onMouseLeave={() => setIsHovered(false)}
 			>
@@ -32,7 +32,7 @@ function Movie({ movie }) {
 				{isHovered && (
 					<div className='w-full p-2 bg-zinc-900 rounded-b overflow-y-hidden'>
 						<div className='w-full font-bold text-white mb-2'>
-							{movie?.title}
+							<span>{movie?.title}</span>
 						</div>
 						<div className='flex items-center justify-between text-white w-full'>
 							<div className='flex space-x-2'>

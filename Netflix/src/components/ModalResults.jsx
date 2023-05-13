@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { BsFillEnvelopePaperHeartFill, BsSearch } from 'react-icons/bs';
+import React, { useState, useEffect, useCallback } from 'react';
+import { BsSearch } from 'react-icons/bs';
 import { API_KEY } from '../Requests';
 import { debounce } from 'lodash';
 
@@ -8,7 +8,6 @@ function ModalResults({ handleModal }) {
 	const [searchResults, setSearchResults] = useState([]);
 	const [currentIndex, setCurrentIndex] = useState(0);
 
-	// useEffect(() => {
 	const handleKeyDown = (e) => {
 		if (e.key === 'Enter') {
 			e.preventDefault();
@@ -24,9 +23,9 @@ function ModalResults({ handleModal }) {
 			);
 		}
 	};
-	// }, []);
 
 	console.log(searchResults);
+
 	console.log(currentIndex);
 
 	const delayCallApi = useCallback(
@@ -51,6 +50,7 @@ function ModalResults({ handleModal }) {
 				setSearchResults([]);
 				return;
 			}
+			setCurrentIndex(0);
 			const response = await fetch(
 				`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchTerm}`
 			);
@@ -72,19 +72,18 @@ function ModalResults({ handleModal }) {
 
 	return (
 		<div>
-			<div className='fixed flex items-center justify-center top-0 left-0 bg-black/80 h-full w-full z-[50] blur-lg'></div>
+			<div className='absolute flex items-center justify-center top-0 left-0 bg-black/80 h-full w-full z-[50] '></div>
 			<div
-				className='w-[800px] max-h-[700px]
-z-[100] absolute top-0 md:top-20 2xl:top-30 left-0 right-0 mx-auto max-w-5xl overflow-hidden rounded-md text-white bg-zinc-900 p-5'
+				className='w-[100%] md:w-[60%] lg:w-[40%] max-h-[700px]
+z-[100] absolute top-0 md:top-20 2xl:top-50 left-0 right-0 mx-auto max-w-5xl overflow-hidden rounded-md text-white bg-zinc-900 p-5'
 			>
 				<div className='w-full flex m-auto'>
-					<form className='w-full flex space-x-4'>
-						<label className='text-white m-auto'>
+					<form className='w-full h-[40px] flex space-x-4'>
+						<label className='text-white m-auto px-2'>
 							<BsSearch size={20} />
 						</label>
 						<input
-							className='w-full h-full flex-1 bg-transparent outline-none pl-2 rounded-md text-white font-bold text-lg cursor-pointer'
-							// onKeyDown={handleSubmitForm}
+							className='w-full h-full flex-1 bg-transparent outline-none p-2  rounded-md text-white font-bold text-lg cursor-pointer'
 							placeholder='Search...'
 							type='search'
 							autoComplete='off'
@@ -97,36 +96,39 @@ z-[100] absolute top-0 md:top-20 2xl:top-30 left-0 right-0 mx-auto max-w-5xl ove
 						></input>
 						<button
 							onClick={handleModal}
-							className='block text-sm border-[1px] border-white px-2 h-6 rounded-lg self-auto'
+							className='block text-sm border-[1px] border-white px-2 h-6 rounded-lg m-auto'
 						>
 							esc
 						</button>
 					</form>
 				</div>
-				<div className='h-[1px] max-w-[100%] bg-zinc-800 mx-auto mt-4'></div>
-				<div className='w-full max-h-[700px] relative overflow-y-scroll scroll-smooth scrollbar-hide'>
-					<div className='p-2'>
-						<ul className=''>
-							{searchResults.map((movie, i) => (
-								<div
-									key={movie.release_date}
-									className={`bg-zinc-800 hover:bg-zinc-700 duration-[200ms] ease-in rounded-md flex p-2 mb-2 ${
-										i === currentIndex ? 'bg-zinc-700' : ''
-									}`}
-								>
-									<img
-										src={`https://image.tmdb.org/t/p/w500/${movie?.backdrop_path}`}
-										className='h-28 rounded'
-										alt={movie?.title}
-									/>
-									<li key={movie?.id} className='ml-3'>
-										<p className='font-bold'>{movie?.original_title}</p>
-										{/* <p classaName='text-xs'>{movie?.overview}</p> */}
-									</li>
-								</div>
-							))}
-						</ul>
-					</div>
+				<div
+					className='h-[1px] max-w-[100%] bg-zinc-800 mx-auto
+				'
+				></div>
+				<div className='w-full overflow-y-scroll scroll-smooth scrollbar-hide'>
+					{/* <div className='p-2'> */}
+					<ul className='mt-2'>
+						{searchResults.map((movie, i) => (
+							<div
+								key={movie.release_date}
+								className={`h-[25%] hover:bg-zinc-700 duration-[200ms] ease-in rounded-md flex p-2 mb-2 ${
+									i === currentIndex ? 'bg-zinc-700' : 'bg-zinc-800'
+								}`}
+							>
+								<img
+									src={`https://image.tmdb.org/t/p/w500/${movie?.backdrop_path}`}
+									className='h-28 rounded'
+									alt={movie?.title}
+								/>
+								<li key={movie?.id} className='ml-3'>
+									<p className='font-bold'>{movie?.original_title}</p>
+									{/* <p classaName='text-xs'>{movie?.overview}</p> */}
+								</li>
+							</div>
+						))}
+					</ul>
+					{/* </div> */}
 				</div>
 			</div>
 		</div>

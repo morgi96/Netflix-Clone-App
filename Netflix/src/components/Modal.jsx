@@ -51,13 +51,13 @@ function Modal({ handleClose, id }) {
 				className='fixed flex items-center justify-center top-0 left-0 bg-black/80 h-full w-full z-[50]'
 			></div>
 			<div
-				className='w-full
+				className='w-full my-auto
 z-[100] fixed top-0 md:top-5 2xl:top-10 left-0 right-0 mx-auto max-w-5xl overflow-hidden rounded-md scrollbar-hide'
 			>
 				<button
 					onClick={handleClose}
-					className='modalBtn absolute right-5 top-5 bg-gray-400 text-white rounded-full p-2 w-10 h-10  flex
-						items-center justify-center cursor-pointer hover:bg-gray-800 z-[100]'
+					className='modalBtn absolute right-5 top-5 bg-zinc-900 text-white rounded-md p-2 w-8 h-8 md:w-9 md:h-9  flex
+						items-center justify-center cursor-pointer border-[1px] border-white hover:bg-white hover:text-black z-[100] duration-[250ms] transition ease'
 				>
 					X
 				</button>
@@ -101,12 +101,12 @@ z-[100] fixed top-0 md:top-5 2xl:top-10 left-0 right-0 mx-auto max-w-5xl overflo
 								</button>
 							</div>
 						</div>
-						<div className='flex items-center space-x-2 pb-2'>
+						<div className='flex items-center space-x-2 mb-2'>
 							<p className='font-semibold text-sm text-green-500'>
-								{Math.round(movie?.vote_average * 10)}% Match
+								Match: {Math.round(movie?.vote_average * 10)}%
 							</p>
 							<p className='text-gray-600 text-sm '>{movie?.release_date}</p>
-							<p className='text-white flex justify-center items-center  h-5 w-9 text-xs border-[1px] font-bold ml-3 rounded-md'>
+							<p className='text-white m-auto items-center flex justify-center h-4 w-9 text-xs border-[1px] font-semibold rounded-md'>
 								HD
 							</p>
 						</div>
@@ -117,16 +117,16 @@ z-[100] fixed top-0 md:top-5 2xl:top-10 left-0 right-0 mx-auto max-w-5xl overflo
 						</p>
 					</div>
 					<div className='mt-4 space-y-1'>
-						<div className='text-white font-semibold text-xs md:text-sm'>
-							<span className='text-gray-700 mr-2'>Genres:</span>
-							{genres?.map((genre) => genre?.name).join(', ')}
-						</div>
-						<div className='text-white font-semibold text-xs md:text-sm'>
-							<span className='text-gray-700 mr-2'>Starring:</span>
+						<div className='text-gray-600 text-xs md:text-sm'>
+							<span className='text-white mr-2'>Starring:</span>
 							{cast
 								?.map((cast) => cast?.name)
 								.slice(0, 2)
 								.join(', ')}
+						</div>
+						<div className='text-gray-600  text-xs md:text-sm'>
+							<span className='text-white mr-2'>Genres:</span>
+							{genres?.map((genre) => genre?.name).join(' • ')}
 						</div>
 					</div>
 				</div>
