@@ -21,18 +21,12 @@ function Home() {
 
 	return (
 		<>
-			<header>
-				<Navbar />
-				<Banner randomMovie={randomMovie} movies={movies} />
-			</header>
-			<main>
-				{/* <RowVertical title='Latest' dataURL={requests.latest} /> */}
-				{/* <main className='w-full overflow-hidden'> */}
-				<Row title='Top rated' dataURL={requests.topRated} />
-				<Row title='Upcoming' dataURL={requests.upcoming} />
-				<Row title='Popular' dataURL={requests.popular} />
-				{/* </main> */}
-			</main>
+			<Navbar />
+			<Banner randomMovie={randomMovie} movies={movies} />
+			<Row title='Top rated' API_URL={requests.topRated} />
+			<Row title='Upcoming' API_URL={requests.upcoming} />
+			{/* <Row title='Popular' API_URL={requests.popular} /> */}
+			{/* <RowVertical title='Latest' dataURL={requests.latest} /> */}
 		</>
 	);
 }

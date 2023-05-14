@@ -1,36 +1,31 @@
 import { useState } from 'react';
 import { FaPlay } from 'react-icons/fa';
 import { BiPlus } from 'react-icons/bi';
+import SliderContext from '../context/SliderContext';
+import ShowDetailsButton from './';
 import { BsHandThumbsUp, BsChevronDown } from 'react-icons/bs';
 
 function Movie({ movie }) {
 	const [isHovered, setIsHovered] = useState(false);
 
-	// const setVoteColor = (vote) => {
-	// 	if (vote >= 8) {
-	// 		return 'text-green-600';
-	// 	}
-	// 	if (vote >= 5) {
-	// 		return 'text-orange-600';
-	// 	} else {
-	// 		return 'text-red-900';
-	// 	}
-	// };
-
 	return (
-		<div className='w-[300px] h-[160px] block relative items-center rounded'>
+		<div className='block w-[300px] h-[160px] overflow'>
 			<div
-				className='hover:absolute block w-[300px] h-[160px] duration-[300ms] hover:scale-[1.2] transition:transform ease hover:z-[10] mx-2 grow'
+				className='hover:absolute hover:translate-z hover:scale-(1.2) duration-[250ms] hover:block w-[300px] h-[160px]'
+				// style={{ transform: 'translateZ(0)' }}
 				onMouseEnter={() => setIsHovered(true)}
 				onMouseLeave={() => setIsHovered(false)}
 			>
 				<img
-					className='object-cover w-full h-full rounded-t'
+					className='block w-full h-full object-cover
+
+							 rounded-t'
 					src={`https://image.tmdb.org/t/p/w500/${movie?.backdrop_path}`}
 					alt={movie?.title}
 				/>
+
 				{isHovered && (
-					<div className='w-full p-2 bg-zinc-900 rounded-b overflow-y-hidden'>
+					<div className='block w-[300px] p-2 bg-zinc-900 rounded-b '>
 						<div className='w-full font-bold text-white mb-2'>
 							<span>{movie?.title}</span>
 						</div>
