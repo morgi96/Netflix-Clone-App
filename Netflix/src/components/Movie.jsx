@@ -18,7 +18,7 @@ function Movie({ movie }) {
 	// };
 
 	return (
-		<div className='w-[300px] h-[160px] block relative items-center rounded'>
+		<div className='inline-block items-center rounded'>
 			<div
 				className='hover:absolute block w-[300px] h-[160px] duration-[300ms] hover:scale-[1.2] transition:transform ease hover:z-[10] mx-2 grow'
 				onMouseEnter={() => setIsHovered(true)}
