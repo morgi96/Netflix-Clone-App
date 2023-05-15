@@ -1,21 +1,21 @@
 import axios from 'axios';
 import { useEffect, useState, useRef } from 'react';
-import { BiRightArrow, BiLeftArrow } from 'react-icons/bi';
 import Movie from './Movie';
+import Slider from './Slider';
 
 function Row({ dataURL, title }) {
+	const [isActive, setIsActive] = useState(false);
 	const [movies, setMovies] = useState([]);
-	const sliderRef = useRef(null);
+
+	const handleClick = () => {
+		setIsActive(!isActive);
+	};
 
 	useEffect(() => {
 		axios.get(dataURL).then(({ data: { results } }) => {
 			setMovies(results);
 		});
 	}, [dataURL]);
-
-	const scrollSlider = (scrollOffset) => {
-		sliderRef.current.scrollLeft += scrollOffset;
-	};
 
 	return (
 		<section className='w-full'>
@@ -24,26 +24,11 @@ function Row({ dataURL, title }) {
 					{title}
 				</span>
 			</div>
-			<div className='relative flex items-center'>
-				<BiLeftArrow
-					onClick={() => scrollSlider(-1000)}
-					size={35}
-					className='text-white bg-black/50 hover:bg-black/80 h-[160px] left-0 absolute cursor-pointer z-[20]'
-				/>
-				<div
-					ref={sliderRef}
-					className='flex overflow-x-scroll scroll-smooth scrollbar-hide relative items-center'
-				>
-					{movies.map((movie) => (
-						<Movie key={movie?.id} movie={movie} />
-					))}
-				</div>
-				<BiRightArrow
-					onClick={() => scrollSlider(1000)}
-					size={35}
-					className='text-white bg-black/50 hover:bg-black/80 h-[160px] right-0 absolute cursor-pointer z-[20]'
-				/>
-			</div>
+			<Slider>
+				{movies.map((movie) => (
+					<Movie key={movie?.id} movie={movie} handleClick={handleClick} />
+				))}
+			</Slider>
 		</section>
 	);
 }

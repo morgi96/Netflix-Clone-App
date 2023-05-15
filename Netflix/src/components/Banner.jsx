@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { useMovies } from '../context/MoviesContext';
 import { FaPlay } from 'react-icons/fa';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import Modal from './Modal';
 
-function Banner({ randomMovie, movies }) {
+function Banner({}) {
 	const [showModal, setShowModal] = useState(false);
+	const randomMovie = useMovies();
 
 	const handleOpen = () => {
 		setShowModal(true);

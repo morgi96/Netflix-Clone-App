@@ -38,8 +38,6 @@ function Modal({ handleClose, id }) {
 		}
 	}, [id]);
 
-	console.log(cast);
-
 	const handlePlay = () => {
 		setPlayTrailer(!playTrailer);
 	};
