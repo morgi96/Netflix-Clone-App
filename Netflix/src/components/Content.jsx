@@ -1,4 +1,5 @@
 import React from 'react';
+import ShowDetailsButton from './ShowDetailsButton';
 
 const Content = ({ movie, onClose }) => {
 	return (

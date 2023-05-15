@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState, useRef } from 'react';
 import { BiRightArrow, BiLeftArrow } from 'react-icons/bi';
 import Movie from './Movie';
+import Slider from './Slider';
 
 function Row({ API_URL, title }) {
 	const [movies, setMovies] = useState([]);
@@ -24,22 +25,22 @@ function Row({ API_URL, title }) {
 					{title}
 				</span>
 			</div>
-			<div className='flex flex-row items-center scroll-smooth' ref={sliderRef}>
-				<BiLeftArrow
+			<div className='pt-[50px]'>
+				{/* <BiLeftArrow
 					onClick={() => scrollSlider(-1000)}
 					size={35}
 					className='text-white bg-black/50 hover:bg-black/80 h-[160px] left-0 absolute cursor-pointer z-[20]'
-				/>
+				/> */}
 				<Slider>
-					{movies.map((movie) => (
-						<Movie key={movie?.id} movie={movie} />
+					{movies.map((movie, i) => (
+						<Movie key={movie?.id} movie={movie} index={i} />
 					))}
 				</Slider>
-				<BiRightArrow
+				{/* <BiRightArrow
 					onClick={() => scrollSlider(1000)}
 					size={35}
 					className='text-white bg-black/50 hover:bg-black/80 h-[160px] right-0 absolute cursor-pointer z-[20]'
-				/>
+				/> */}
 			</div>
 		</>
 	);

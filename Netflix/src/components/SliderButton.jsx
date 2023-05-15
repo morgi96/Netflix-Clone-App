@@ -1,7 +1,15 @@
 import React from 'react';
+import { BsChevronDown } from 'react-icons/bs';
 
-function SliderButton() {
-	return <div>SliderButton</div>;
-}
+const SliderButton = ({ onClick, type }) => (
+	<button
+		className={`slider-button slider-button--${type} z-[99]`}
+		onClick={onClick}
+	>
+		<span>
+			<BsChevronDown className='text-white' />
+		</span>
+	</button>
+);
 
 export default SliderButton;
