@@ -5,6 +5,7 @@ import { getVideoUrl, getCastUrl } from '../Requests';
 import { FaPlay } from 'react-icons/fa';
 import { BiPlus } from 'react-icons/bi';
 import { BsPauseCircle, BsHandThumbsUp } from 'react-icons/bs';
+import { AiOutlineClose } from 'react-icons/ai';
 
 function Modal({ handleClose, id }) {
 	const [trailer, setTrailer] = useState(null);
@@ -57,7 +58,7 @@ z-[100] fixed top-0 md:top-5 2xl:top-10 left-0 right-0 mx-auto max-w-5xl overflo
 					className='modalBtn absolute right-5 top-5 bg-zinc-900 text-white rounded-md p-2 w-8 h-8 md:w-9 md:h-9  flex
 						items-center justify-center cursor-pointer border-[1px] border-white hover:bg-white hover:text-black z-[100] duration-[250ms] transition ease'
 				>
-					X
+					<AiOutlineClose />
 				</button>
 				<div className='relative pt-[50%]'>
 					<ReactPlayer

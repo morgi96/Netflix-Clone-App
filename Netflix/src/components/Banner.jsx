@@ -1,12 +1,20 @@
-import { useState } from 'react';
-import { useMovies } from '../context/MoviesContext';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import requests from '../Requests';
 import { FaPlay } from 'react-icons/fa';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import Modal from './Modal';
 
 function Banner({}) {
 	const [showModal, setShowModal] = useState(false);
-	const randomMovie = useMovies();
+	const [randomMovie, setRandomMovie] = useState(null);
+
+	useEffect(() => {
+		axios.get(requests.popular).then(({ data: { results } }) => {
+			const randomMovie = results[Math.floor(Math.random() * results.length)];
+			setRandomMovie(randomMovie);
+		});
+	}, []);
 
 	const handleOpen = () => {
 		setShowModal(true);

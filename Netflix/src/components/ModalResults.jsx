@@ -24,10 +24,6 @@ function ModalResults({ handleModal }) {
 		}
 	};
 
-	console.log(searchResults);
-
-	console.log(currentIndex);
-
 	const delayCallApi = useCallback(
 		debounce((searchTerm) => {
 			handleSearch(searchTerm);

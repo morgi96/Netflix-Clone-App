@@ -26,3 +26,15 @@ body {
 .modal-open {
 	overflow: hidden;
 }
+/* @keyframes slideIn {
+	from {
+		transform: translateX(-100%);
+	}
+	to {
+		transform: translateX(0);
+	}
+}
+
+.content.active {
+	animation: slideIn 0.5s ease-in;
+} */
