@@ -6,7 +6,6 @@ import userAvatar from '../assets/userAvatar.png';
 import ModalResults from './ModalResults';
 
 function Navbar() {
-	const [isScrolled, setIsScrolled] = useState(false);
 	const [showDialogProfile, setShowDialogProfile] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
 	const { user, logOut } = UserAuth();
@@ -53,11 +52,7 @@ function Navbar() {
 
 	return (
 		<>
-			<div
-				className={`w-full flex items-center justify-between px-8 z-[50] absolute transition duration-[300ms] ease-out ${
-					isScrolled && 'bg-black'
-				}`}
-			>
+			<div className='w-full flex items-center justify-between px-8 z-[50] absolute transition duration-[300ms] ease-out'>
 				<div className='flex items-center'>
 					<Link to='/home'>
 						<h1 className='text-red-600 font-bold text-[3rem] cursor-pointer'>

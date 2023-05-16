@@ -19,4 +19,5 @@ export const getCastUrl = (id) => {
 export const getMovieBySearch = (term) => {
 	return `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${term}`;
 };
+
 export default requests;

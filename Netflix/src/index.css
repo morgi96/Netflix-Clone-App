@@ -26,92 +26,16 @@ body {
 .modal-open {
 	overflow: hidden;
 }
-.movie {
-	flex: 0 0 20%;
-	transition: transform 300ms ease 100ms;
-	margin: 0 2px;
-	position: relative;
+
+/* @keyframes slideIn {
+	from {
+		transform: translateX(-100%);
+	}
+	to {
+		transform: translateX(0);
+	}
 }
 
-.slider {
-	display: flex;
-	position: relative;
-}
-.slider__container {
-	display: flex;
-	padding: 0 55px;
-	transition: transform 300ms ease 100ms;
-	z-index: 3;
-	width: 100%;
-}
-
-.show-details-button {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	opacity: 0;
-	transition: opacity 300ms ease 100ms;
-	background: transparent;
-	border: 0;
-	outline: none;
-	width: 100%;
-}
-.show-details-button > span {
-	display: block;
-	width: 14px;
-	margin: 0 auto;
-	color: white;
-}
-
-.slider:not(.slider--open) .movie:hover .show-details-button {
-	opacity: 1;
-}
-
-.slider:not(.slider--open) .movie:hover {
-	transform: scale(1.5) !important;
-}
-
-.slider:not(.slider--open):hover .movie {
-	transform: translateX(-25%);
-}
-
-.slider:not(.slider--open) .movie:hover ~ .movie {
-	transform: translateX(25%);
-}
-
-.slider-button {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	width: 55px;
-	background: rgba(0, 0, 0, 0.5);
-	border: 0;
-	outline: 0;
-	padding: 0;
-	margin: 40px 0;
-	z-index: 4;
-}
-
-.slider-button span {
-	width: 25px;
-	color: #fff;
-	display: block;
-	margin: 0 auto;
-}
-
-.slider-button--next {
-	right: 0;
-}
-
-.slider-button--next span {
-	transform: rotateZ(-90deg);
-}
-
-.slider-button--prev {
-	left: 0;
-}
-
-.slider-button--prev span {
-	transform: rotateZ(90deg);
-}
+.content.active {
+	animation: slideIn 0.5s ease-in;
+} */

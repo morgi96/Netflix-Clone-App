@@ -1,29 +1,18 @@
-import cx from 'classnames';
 import SliderContext from '../context/SliderContext';
-import ShowDetailsButton from './ShowDetailsButton';
-
-const Movie = ({ movie, index }) => (
-	<SliderContext.Consumer>
-		{({ onSelectSlide, currentSlide, elementRef }) => {
-			const isActive = currentSlide && currentSlide.id === index;
-			return (
-				<div
-					ref={elementRef}
-					className={cx('movie', {
-						'movie--open': isActive,
-					})}
-				>
-					<img
-						src={`https://image.tmdb.org/t/p/w500/${movie?.backdrop_path}`}
-						alt={movie?.title}
-						className='w-full h-full align-top'
-					/>
-					<ShowDetailsButton onClick={() => onSelectSlide(movie)} />
-				</div>
-			);
-		}}
-	</SliderContext.Consumer>
-);
+function Movie({ movie }) {
+	return (
+		<SliderContext.Consumer>
+			{({ handleSelect }) => (
+				<img
+					className='object-cover w-[320px] h-[160px] rounded-[12px] hover:scale-110 duration-[250ms] ease py-2'
+					src={`https://image.tmdb.org/t/p/w500/${movie?.backdrop_path}`}
+					alt={movie?.title}
+					onClick={() => handleSelect(movie)}
+				/>
+			)}
+		</SliderContext.Consumer>
+	);
+}
 export default Movie;
 
 // import { useState } from 'react';

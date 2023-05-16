@@ -1,57 +1,51 @@
-// import React, { useState } from 'react';
-// import useSizeElement from '../hooks/useSizeElement';
-// import useSliding from '../hooks/useSliding';
-// import SliderWrapper from './SliderWrapper';
-// import SliderButton from './SliderButton';
-// import SliderContext from '../context/SliderContext';
-// import Content from './Content';
-import React, { useState } from 'react';
-import cx from 'classnames';
-import SliderContext from '../context/SliderContext';
+import React, { useRef, useState } from 'react';
+import { BiRightArrow, BiLeftArrow } from 'react-icons/bi';
 import Content from './Content';
-import SliderButton from './SliderButton';
-import SliderWrapper from './SliderWrapper';
-import useSliding from '../hooks/useSliding';
-import useSizeElement from '../hooks/useSizeElement';
+import SliderContext from '../context/SliderContext';
 
-function Slider({ children, activeSlide }) {
-	const [currentSlide, setCurrentSlide] = useState(activeSlide);
-	const { width, elementRef } = useSizeElement();
+function Slider({ children }) {
+	const [currentMovie, setCurrentMovie] = useState(null);
+	const sliderRef = useRef();
 
-	const { handlePrev, handleNext, slideProps, hasPrev, hasNext, containerRef } =
-		useSliding(width, React.Children.count(children));
+	const scrollSlider = (scrollOffset) => {
+		sliderRef.current.scrollLeft += scrollOffset;
+	};
 
 	const handleSelect = (movie) => {
-		setCurrentSlide(movie);
+		setCurrentMovie(movie);
 	};
 
 	const handleClose = () => {
-		setCurrentSlide(null);
+		setCurrentMovie(null);
 	};
 
 	const contextValue = {
-		onSelectSlide: handleSelect,
-		onCloseSlide: handleClose,
-		elementRef,
-		currentSlide,
+		currentMovie,
+		handleSelect,
+		handleClose,
 	};
 
 	return (
 		<SliderContext.Provider value={contextValue}>
-			<SliderWrapper>
+			<div className='relative flex items-center'>
+				<BiLeftArrow
+					onClick={() => scrollSlider(-1000)}
+					size={35}
+					className='text-white bg-black/50 hover:bg-black/80 h-[160px] left-0 absolute cursor-pointer z-[20] duration-[250ms] ease-out'
+				/>
 				<div
-					className={cx('slider', {
-						'slider--open': currentSlide != null,
-					})}
+					ref={sliderRef}
+					className='px-10 flex overflow-x-scroll scroll-smooth scrollbar-hide relative items-center space-x-3'
 				>
-					<div ref={containerRef} className='slider__container' {...slideProps}>
-						{children}
-					</div>
+					{children}
 				</div>
-				{hasPrev && <SliderButton onClick={handlePrev} type='prev' />}
-				{hasNext && <SliderButton onClick={handleNext} type='next' />}
-			</SliderWrapper>
-			{currentSlide && <Content movie={currentSlide} onClose={handleClose} />}
+				<BiRightArrow
+					onClick={() => scrollSlider(1000)}
+					size={35}
+					className='text-white bg-black/50 hover:bg-black/80 h-[160px] right-0 absolute cursor-pointer z-[20] duration-[250ms] ease-out'
+				/>
+			</div>
+			{currentMovie && <Content movie={currentMovie} onClose={handleClose} />}
 		</SliderContext.Provider>
 	);
 }
