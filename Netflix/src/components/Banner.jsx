@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import requests from '../Requests';
+import Modal from './Modal';
+import axios from 'axios';
 import { FaPlay } from 'react-icons/fa';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
-import Modal from './Modal';
 
 function Banner({}) {
 	const [showModal, setShowModal] = useState(false);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import { API_KEY } from '../Requests';
 import { debounce } from 'lodash';
@@ -7,6 +7,16 @@ function ModalResults({ handleModal }) {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
 	const [currentIndex, setCurrentIndex] = useState(0);
+	const listRef = useRef(null);
+
+	const scrollToMovie = (currentIndex) => {
+		if (listRef.current && listRef.current.children[currentIndex]) {
+			listRef.current.children[currentIndex].scrollIntoView({
+				behavior: 'smooth',
+				block: 'nearest',
+			});
+		}
+	};
 
 	const handleKeyDown = (e) => {
 		if (e.key === 'Enter') {
@@ -15,14 +25,20 @@ function ModalResults({ handleModal }) {
 			setCurrentIndex((currentIndex) =>
 				currentIndex > 0 ? currentIndex - 1 : currentIndex
 			);
+			scrollToMovie(currentIndex - 1);
 		} else if (e.key === 'ArrowDown') {
 			setCurrentIndex((currentIndex) =>
 				currentIndex < searchResults.length - 1
 					? currentIndex + 1
 					: currentIndex
 			);
+			scrollToMovie(currentIndex + 1);
 		}
 	};
+	useEffect(() => {
+		scrollToMovie();
+	}, [currentIndex]);
+
 	const delayCallApi = useCallback(
 		debounce((searchTerm) => {
 			handleSearch(searchTerm);
@@ -64,13 +80,14 @@ function ModalResults({ handleModal }) {
 			console.error('Error data fetching, try again later...', error);
 		}
 	};
+	console.log(currentIndex);
 
 	return (
 		<div>
-			<div className='absolute flex items-center justify-center top-0 left-0 bg-black/80 h-full w-full z-[50] '></div>
+			<div className='absolute flex items-center justify-center top-0 left-0 bg-black/80 h-full w-full z-[50]'></div>
 			<div
-				className='w-[100%] md:w-[60%] lg:w-[40%] max-h-[700px]
-z-[100] absolute top-0 md:top-20 2xl:top-50 left-0 right-0 mx-auto max-w-5xl overflow-hidden rounded-md text-white bg-zinc-900 p-5'
+				className='w-[100%] md:w-[60%] lg:w-[40%] max-h-[600px]
+z-[100] absolute top-0 md:top-20 2xl:top-50 left-0 right-0 mx-auto max-w-5xl overflow-y-scroll scroll-smooth rounded-md text-white bg-zinc-900 p-5'
 			>
 				<div className='w-full flex m-auto'>
 					<form className='w-full h-[40px] flex space-x-4'>
@@ -103,7 +120,7 @@ z-[100] absolute top-0 md:top-20 2xl:top-50 left-0 right-0 mx-auto max-w-5xl ove
 				></div>
 				<div className='w-full overflow-y-scroll scroll-smooth scrollbar-hide'>
 					{/* <div className='p-2'> */}
-					<ul className='mt-2'>
+					<ul className='mt-2' ref={listRef}>
 						{searchResults.map((movie, i) => (
 							<div
 								key={movie.release_date}

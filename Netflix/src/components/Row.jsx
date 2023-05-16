@@ -15,7 +15,7 @@ function Row({ API_URL, title }) {
 	return (
 		<section className='w-full'>
 			<div className='py-4 my-4 overflow-hidden'>
-				<span className='relative text-white font-bold md:text-xl lg:text-2xl px-10'>
+				<span className='text-white font-bold md:text-xl lg:text-2xl px-10'>
 					{title}
 				</span>
 			</div>

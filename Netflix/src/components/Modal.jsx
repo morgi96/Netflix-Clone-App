@@ -50,8 +50,8 @@ function Modal({ handleClose, id }) {
 				className='fixed flex items-center justify-center top-0 left-0 bg-black/80 h-full w-full z-[50]'
 			></div>
 			<div
-				className='w-full my-auto
-z-[100] fixed top-0 md:top-5 2xl:top-10 left-0 right-0 mx-auto max-w-5xl overflow-hidden rounded-md scrollbar-hide'
+				className='w-full mx-auto
+z-[100] fixed top-0 md:top-10 left-0 right-0 bottom-0 max-w-4xl md:max-w-2xl lg:max-w-3xl overflow-hidden rounded-md scrollbar-hide'
 			>
 				<button
 					onClick={handleClose}
@@ -75,7 +75,7 @@ z-[100] fixed top-0 md:top-5 2xl:top-10 left-0 right-0 mx-auto max-w-5xl overflo
 				<div className='bg-zinc-900 z-50 p-4'>
 					<div className='flex flex-col'>
 						<div className='flex w-full justify-between'>
-							<h2 className='text-white font-bold text-lg md:text-3xl'>
+							<h2 className='text-white font-bold text-lg md:text-2xl lg:text-3xl'>
 								{movie?.original_title}
 							</h2>
 							<div className='flex items-center space-x-2'>

@@ -1,16 +1,16 @@
-import Banner from '../components/Banner';
 import requests from '../Requests';
-import Row from '../components/Row';
+import Banner from '../components/Banner';
 import Navbar from '../components/Navbar';
+import Row from '../components/Row';
 
 function Home() {
 	return (
 		<>
 			<Navbar />
 			<Banner />
-			<Row title='Top rated' dataURL={requests.topRated} />
-			<Row title='Upcoming' dataURL={requests.upcoming} />
-			<Row title='Popular' dataURL={requests.popular} />
+			<Row title='Top rated' API_URL={requests.topRated} />
+			<Row title='Upcoming' API_URL={requests.upcoming} />
+			<Row title='Popular' API_URL={requests.popular} />
 		</>
 	);
 }
