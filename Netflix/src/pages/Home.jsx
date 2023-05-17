@@ -6,11 +6,10 @@ import Row from '../components/Row';
 function Home() {
 	return (
 		<>
-			<Navbar />
 			<Banner />
+			<Row title='Latest' API_URL={requests.latest} />
 			<Row title='Top rated' API_URL={requests.topRated} />
 			<Row title='Upcoming' API_URL={requests.upcoming} />
-			<Row title='Popular' API_URL={requests.popular} />
 		</>
 	);
 }

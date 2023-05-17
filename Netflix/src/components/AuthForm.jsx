@@ -30,9 +30,9 @@ function AuthForm({ title, actionText, accountText, onSubmit }) {
 
 	return (
 		<div className='min-h-full relative'>
-			<div className='w-full h-[90px] absolute top-0 z-10'>
+			{/* <div className='w-full h-[90px] absolute top-0 z-10'>
 				<h1 className='font-bold text-[3rem] text-red-600 ml-[3%]'>NETFLIX</h1>
-			</div>
+			</div> */}
 			<div className='w-full min-h-screen block overflow-hidden opacity-[50%] bg-cover h-full absolute -z-10'>
 				<img
 					className='hidden sm:block min-h-full min-w-full object-cover'

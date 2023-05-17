@@ -12,7 +12,10 @@ body {
 		@apply border-[1px] p-[5px] h-7 w-7 md:h-9 md:w-9 rounded-lg flex items-center justify-center hover:bg-white hover:text-black transition ease-in-out duration-[250ms];
 	}
 	.movie {
-		@apply object-cover w-[150px] h-[160px] md:w-[200px] md:h-[120px] lg:w-[300px] lg:h-[160px] rounded-[5px] duration-[250ms] ease-linear cursor-pointer my-2 hover:scale-110;
+		@apply object-cover w-[150px] h-[160px] md:w-[200px] md:h-[120px] lg:w-[300px] lg:h-[160px] rounded-[5px] duration-[250ms] ease-linear cursor-pointer my-2 hover:scale-105;
+	}
+	.saved--movie {
+		@apply object-cover w-[260px] h-[380px] rounded-[5px] duration-[250ms] ease-in cursor-pointer my-4 hover:scale-105;
 	}
 	.modal-open {
 		@apply overflow-hidden;

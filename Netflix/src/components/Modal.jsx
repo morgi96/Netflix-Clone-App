@@ -6,13 +6,37 @@ import { FaPlay } from 'react-icons/fa';
 import { BiPlus } from 'react-icons/bi';
 import { BsPauseCircle, BsHandThumbsUp } from 'react-icons/bs';
 import { AiOutlineClose } from 'react-icons/ai';
+import { UserAuth } from '../context/AuthContext';
+import { db } from '../firebase';
+import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
 
 function Modal({ handleClose, id }) {
+	const [playTrailer, setPlayTrailer] = useState(false);
 	const [trailer, setTrailer] = useState(null);
 	const [genres, setGenres] = useState(null);
 	const [movie, setMovie] = useState(null);
-	const [playTrailer, setPlayTrailer] = useState(false);
 	const [cast, setCast] = useState(null);
+	const [favourite, setFavourite] = useState(false);
+	const [savedMovies, setSavedMovies] = useState(false);
+	const { user } = UserAuth();
+
+	const movieID = doc(db, 'users', `${user?.email}`);
+
+	const saveMovie = async () => {
+		if (user?.email) {
+			setFavourite(!favourite);
+			setSavedMovies(true);
+			await updateDoc(movieID, {
+				savedMovies: arrayUnion({
+					id: movie?.id,
+					title: movie?.title,
+					img: movie?.poster_path,
+				}),
+			});
+		} else {
+			alert('Please log in to save a movie!');
+		}
+	};
 
 	const getTrailer = (videos) => {
 		const trailer = videos.find((video) => video.type === 'Trailer');
@@ -89,8 +113,12 @@ z-[100] fixed top-0 md:top-10 left-0 right-0 bottom-0 max-w-4xl md:max-w-2xl lg:
 								<button className='modalBtn'>
 									<BiPlus className='btnModal text-white rounded-full' />
 								</button>
-								<button className='modalBtn'>
-									<BsHandThumbsUp className='btnModal text-white rounded-full' />
+								<button className='modalBtn' onClick={saveMovie}>
+									<BsHandThumbsUp
+										className={`btnModal rounded-full ${
+											favourite ? 'bg-white text-black' : ' text-white'
+										}`}
+									/>
 								</button>
 							</div>
 						</div>

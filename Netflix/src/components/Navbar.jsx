@@ -1,6 +1,6 @@
 import { BsSearch } from 'react-icons/bs';
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
 import userAvatar from '../assets/userAvatar.png';
 import ModalResults from './ModalResults';
@@ -11,9 +11,23 @@ function Navbar() {
 	const { user, logOut } = UserAuth();
 
 	const navigate = useNavigate();
+	const location = useLocation();
 
 	const handleModal = () => {
 		setIsOpen(!isOpen);
+	};
+
+	const handleLogOut = async () => {
+		try {
+			await logOut();
+			navigate('/');
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleShowDialog = () => {
+		setShowDialogProfile(!showDialogProfile);
 	};
 
 	useEffect(() => {
@@ -37,18 +51,11 @@ function Navbar() {
 		}
 	}, [isOpen]);
 
-	const handleLogOut = async () => {
-		try {
-			await logOut();
-			navigate('/');
-		} catch (error) {
-			console.log(error);
+	useEffect(() => {
+		if (location.pathname === '/account') {
+			setShowDialogProfile(false);
 		}
-	};
-
-	const handleShowDialog = () => {
-		setShowDialogProfile(!showDialogProfile);
-	};
+	}, [location.pathname]);
 
 	return (
 		<>
