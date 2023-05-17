@@ -5,7 +5,7 @@ App has some features but i will developing more in several days.
 
 ### Link to Netlify
 
-- https://incredible-pony-5ff21c.netlify.app/home
+- https://resilient-biscotti-21abcf.netlify.app/
 
 ## Features
 
