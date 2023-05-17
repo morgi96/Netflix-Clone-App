@@ -22,7 +22,7 @@ function Account() {
 			<div className='w-full text-white'>
 				<div className='w-full bg-black h-[200px] text-center'>
 					<span className='relative text-white font-bold text-4xl top-[100px]'>
-						Favourites movies
+						Favourite movies:
 					</span>
 				</div>
 				<SavedMovies>

@@ -52,14 +52,14 @@ function Navbar() {
 	}, [isOpen]);
 
 	useEffect(() => {
-		if (location.pathname === '/account') {
+		if (location.pathname === '/account' || location.pathname === '/home') {
 			setShowDialogProfile(false);
 		}
 	}, [location.pathname]);
 
 	return (
 		<>
-			<div className='w-full flex items-center justify-between px-8 z-[50] absolute transition duration-[300ms] ease-out'>
+			<div className='w-full absolute flex items-center justify-between px-8 z-[50] transition duration-[300ms] ease-out'>
 				<div className='flex items-center'>
 					<Link to='/home'>
 						<h1 className='text-red-600 font-bold text-[3rem] cursor-pointer'>

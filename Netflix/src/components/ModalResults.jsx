@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { BsSearch } from 'react-icons/bs';
 import { API_KEY } from '../Requests';
 import { debounce } from 'lodash';
+import { BsSearch } from 'react-icons/bs';
 
 function ModalResults({ handleModal }) {
 	const [searchTerm, setSearchTerm] = useState('');

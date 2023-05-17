@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import SliderContext from '../context/SliderContext';
 import { AiOutlineClose } from 'react-icons/ai';
+import SliderContext from '../context/SliderContext';
 
 function Content({ movie }) {
 	const { handleClose } = useContext(SliderContext);

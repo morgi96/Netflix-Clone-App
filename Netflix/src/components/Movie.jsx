@@ -7,9 +7,7 @@ function Movie({ movie }) {
 
 	return (
 		<img
-			className={
-				isActive ? 'movie scale-110 duration-[200ms] ease-out' : 'movie'
-			}
+			className={isActive ? 'movie scale-105' : 'movie'}
 			src={`https://image.tmdb.org/t/p/w500/${movie?.backdrop_path}`}
 			alt={movie?.title}
 			onClick={() => handleSelect(movie)}
