@@ -13,8 +13,8 @@ function Row({ API_URL, title }) {
 	}, [API_URL]);
 
 	return (
-		<section className='w-full'>
-			<div className='py-4 my-4 overflow-hidden'>
+		<section className='w-full mb-5'>
+			<div className='py-4 my-2 overflow-hidden'>
 				<span className='text-white font-bold md:text-xl lg:text-2xl px-10'>
 					{title}
 				</span>
@@ -28,33 +28,3 @@ function Row({ API_URL, title }) {
 	);
 }
 export default Row;
-
-// <section className='h-[280px] relative'>
-// <div className='px-4 py-4 my-4'>
-// 	<span className='relative inline-block before:block before:absolute before:-inset-[1px] before:-skew-y-3 before:bg-red-600'>
-// 	<span className='relative text-white font-bold md:text-xl lg:text-2xl px-5'>
-// 		{title}
-// 	</span>
-// 	</span>
-// </div>
-// <div
-// 	className='flex flex-row items-center  scroll-smooth'
-// 	ref={sliderRef}
-// >
-// 	<BiLeftArrow
-// 		onClick={() => scrollSlider(-1000)}
-// 		size={35}
-// 		className='text-white bg-black/50 hover:bg-black/80 h-[160px] left-0 absolute cursor-pointer z-[20]'
-// 	/>
-// 	<div className='w-full h-full flex items-center space-x-2 grow'>
-// 		{movies.map((movie) => (
-// 			<Movie key={movie?.id} movie={movie} />
-// 		))}
-// 	</div>
-// 	<BiRightArrow
-// 		onClick={() => scrollSlider(1000)}
-// 		size={35}
-// 		className='text-white bg-black/50 hover:bg-black/80 h-[160px] right-0 absolute cursor-pointer z-[20]'
-// 	/>
-// </div>
-// </section>

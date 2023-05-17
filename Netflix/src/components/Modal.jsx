@@ -87,16 +87,10 @@ z-[100] fixed top-0 md:top-10 left-0 right-0 bottom-0 max-w-4xl md:max-w-2xl lg:
 									)}
 								</button>
 								<button className='modalBtn'>
-									<BiPlus
-										size={30}
-										className='btnModal text-white rounded-full'
-									/>
+									<BiPlus className='btnModal text-white rounded-full' />
 								</button>
 								<button className='modalBtn'>
-									<BsHandThumbsUp
-										size={30}
-										className='btnModal text-white rounded-full'
-									/>
+									<BsHandThumbsUp className='btnModal text-white rounded-full' />
 								</button>
 							</div>
 						</div>
@@ -111,7 +105,7 @@ z-[100] fixed top-0 md:top-10 left-0 right-0 bottom-0 max-w-4xl md:max-w-2xl lg:
 						</div>
 					</div>
 					<div className='flex flex-col justify-start items-center max-w-[75%] md:max-w-[65%]'>
-						<p className='text-white text-semibold text-sm md:text-base'>
+						<p className='text-white text-semibold text-sm 2xl:text-base'>
 							{movie?.overview}
 						</p>
 					</div>

@@ -5,7 +5,7 @@ import axios from 'axios';
 import { FaPlay } from 'react-icons/fa';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 
-function Banner({}) {
+function Banner() {
 	const [showModal, setShowModal] = useState(false);
 	const [randomMovie, setRandomMovie] = useState(null);
 
@@ -19,6 +19,7 @@ function Banner({}) {
 	const handleOpen = () => {
 		setShowModal(true);
 	};
+
 	const handleClose = () => {
 		setShowModal(false);
 	};

@@ -87,7 +87,7 @@ function ModalResults({ handleModal }) {
 			<div className='absolute flex items-center justify-center top-0 left-0 bg-black/80 h-full w-full z-[50]'></div>
 			<div
 				className='w-[100%] md:w-[60%] lg:w-[40%] max-h-[600px]
-z-[100] absolute top-0 md:top-20 2xl:top-50 left-0 right-0 mx-auto max-w-5xl overflow-y-scroll scroll-smooth rounded-md text-white bg-zinc-900 p-5'
+z-[100] absolute top-0 md:top-20 2xl:top-50 left-0 right-0 mx-auto max-w-5xl overflow-y-scroll scroll-smooth scrollbar-hide rounded-md text-white bg-zinc-900 p-4'
 			>
 				<div className='w-full flex m-auto'>
 					<form className='w-full h-[40px] flex space-x-4'>
@@ -118,7 +118,7 @@ z-[100] absolute top-0 md:top-20 2xl:top-50 left-0 right-0 mx-auto max-w-5xl ove
 					className='h-[1px] max-w-[100%] bg-zinc-800 mx-auto
 				'
 				></div>
-				<div className='w-full overflow-y-scroll scroll-smooth scrollbar-hide'>
+				<div className='w-full'>
 					{/* <div className='p-2'> */}
 					<ul className='mt-2' ref={listRef}>
 						{searchResults.map((movie, i) => (
