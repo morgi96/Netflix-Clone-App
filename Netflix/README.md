@@ -3,6 +3,10 @@
 Netflix Clone with movies that using TMDB API.
 App has some features but i will developing more in several days.
 
+### Link to Netlify
+
+- https://incredible-pony-5ff21c.netlify.app/home
+
 ## Features
 
 Added features so far:
