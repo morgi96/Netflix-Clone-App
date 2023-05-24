@@ -11,7 +11,7 @@ function App() {
 	return (
 		<>
 			<AuthContextProvider>
-				<Navbar />
+
 				<Routes>
 					<Route path='/' element={<Login />} />
 					<Route
